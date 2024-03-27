@@ -68,4 +68,10 @@ public class InvoiceActivity {
         dataSource.addProduct(newProduct);
         dataSource.close();
     }
+
+    public void removeProduct(String modelNumberText) {
+        dataSource.open();
+        dataSource.deleteProduct(modelNumberText);
+        dataSource.close();
+    }
 }

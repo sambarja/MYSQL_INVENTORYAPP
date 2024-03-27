@@ -174,7 +174,49 @@ public class InventoryDataSource {
                     selectionArgs
             );
         }
+
+    public List<product> fetchDataFromDatabase() {
+        open();
+        List<product> productList = new ArrayList<>();
+
+        // Define the columns you want to retrieve
+        String[] projection = {
+                InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME,
+                InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER,
+                InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY
+        };
+
+        // Execute the query
+        Cursor cursor = database.query(
+                InventoryContract.ProductEntry.TABLE_NAME,  // The table to query
+                projection,                                 // The columns to return
+                null,                                       // The columns for the WHERE clause
+                null,                                       // The values for the WHERE clause
+                null,                                       // Don't group the rows
+                null,                                       // Don't filter by row groups
+                null                                        // The sort order
+        );
+
+        // Iterate over the result set and create Product objects
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String modelName = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME));
+                String modelNumber = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER));
+                int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY));
+
+                product product = new product(modelName, modelNumber, quantity);
+                productList.add(product);
+            }
+            cursor.close();
+        }
+
+        close();
+
+        return productList;
     }
+
+}
+
 
 
 

@@ -99,6 +99,12 @@ public class addproduct extends AppCompatActivity {
                 if (modelNumberExists) {
                     // Display error message if model number exists
                     Toast.makeText(getApplicationContext(), "Product Already Exists", Toast.LENGTH_SHORT).show();
+                    modelNumber.setText("");
+                    productName.setText("");
+                    si.setText("");
+                    brand.setText("");
+                    price.setText("");
+                    quantity.setText("0");
                 } else {
                     // Add data to the inventory table
                     int quantityValue = Integer.parseInt(quantityText);
@@ -110,6 +116,12 @@ public class addproduct extends AppCompatActivity {
                     dataSource.addProduct(newProduct);
 
                     Toast.makeText(getApplicationContext(), "Product added successfully", Toast.LENGTH_SHORT).show();
+                    modelNumber.setText("");
+                    productName.setText("");
+                    si.setText("");
+                    brand.setText("");
+                    price.setText("");
+                    quantity.setText("0");
                 }
             }
         });

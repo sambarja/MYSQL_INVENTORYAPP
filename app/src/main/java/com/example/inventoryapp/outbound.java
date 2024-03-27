@@ -106,9 +106,17 @@ public class outbound extends AppCompatActivity {
                     dataSource.updateInventoryQuantity(modelNumberText, Integer.parseInt(quantityText),"outbound");
 
                     Toast.makeText(getApplicationContext(), "Data added successfully", Toast.LENGTH_SHORT).show();
+                    modelNumber.setText("");
+                    si.setText("");
+                    client.setText("");
+                    quantity.setText("0");
                 } else {
                     // Display error message if model number doesn't exist
                     Toast.makeText(getApplicationContext(), "Model number does not exist", Toast.LENGTH_SHORT).show();
+                    modelNumber.setText("");
+                    si.setText("");
+                    client.setText("");
+                    quantity.setText("0");
                 }
             }
         });
