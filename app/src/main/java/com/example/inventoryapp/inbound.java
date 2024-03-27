@@ -12,6 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class inbound extends AppCompatActivity {
 
@@ -81,10 +83,15 @@ public class inbound extends AppCompatActivity {
             public void onClick(View view) {
                 String modelNumberText = modelNumber.getText().toString();
                 String quantityText = quantity.getText().toString();
+                String siText = si.getText().toString();
 
-                // Check if model number and quantity are not empty
-                if (modelNumberText.isEmpty() || quantityText.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please enter model number and quantity", Toast.LENGTH_SHORT).show();
+                // Get current date
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String dateValue = sdf.format(new Date());
+
+                // Check if model number, quantity, and SI are not empty
+                if (modelNumberText.isEmpty() || quantityText.isEmpty() || siText.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter all details", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -93,10 +100,10 @@ public class inbound extends AppCompatActivity {
 
                 if (modelNumberExists) {
                     // Add data to the invoice table
-                    dataSource.addDataToInvoice(modelNumberText, quantityText);
+                    dataSource.addDataToInvoice(modelNumberText, quantityText, "inbound", "user", dateValue, Integer.parseInt(siText));
 
                     // Update quantity in the inventory table
-                    dataSource.updateInventoryQuantity(modelNumberText, Integer.parseInt(quantityText));
+                    dataSource.updateInventoryQuantity(modelNumberText, Integer.parseInt(quantityText),"inbound");
 
                     Toast.makeText(getApplicationContext(), "Data added successfully", Toast.LENGTH_SHORT).show();
                 } else {

@@ -126,7 +126,40 @@ public class InventoryDataSource {
             return exists;
         }
 
-        public void updateQuantityByModelNumber(String modelNumber, int quantity) {
+    public int getQuantityByModelNumber(String modelNumber) {
+        int quantity = 0;
+
+        // Define the columns you want to retrieve
+        String[] projection = {InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY};
+
+        // Define the selection criteria
+        String selection = InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER + " = ?";
+
+        // Define the selection arguments (replace ? placeholders in selection)
+        String[] selectionArgs = {modelNumber};
+
+        // Execute the query
+        Cursor cursor = database.query(
+                InventoryContract.ProductEntry.TABLE_NAME,  // The table to query
+                projection,                                 // The columns to return
+                selection,                                  // The columns for the WHERE clause
+                selectionArgs,                              // The values for the WHERE clause
+                null,                                       // Don't group the rows
+                null,                                       // Don't filter by row groups
+                null                                        // The sort order
+        );
+
+        // Extract quantity from the result set
+        if (cursor != null && cursor.moveToFirst()) {
+            quantity = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY));
+            cursor.close();
+        }
+
+        return quantity;
+    }
+
+
+    public void updateQuantityByModelNumber(String modelNumber, int quantity) {
             // Update the quantity in the inventory table
             ContentValues values = new ContentValues();
             values.put(InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY, quantity);
