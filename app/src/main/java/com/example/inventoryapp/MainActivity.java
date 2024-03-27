@@ -35,15 +35,15 @@ public class MainActivity extends AppCompatActivity {
         edPassword = findViewById(R.id.editTextTextPassword);
         btn = findViewById(R.id.loginButton);
 
-        btn.setOnClickListener(new View.OnClickListener(){
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick (View view){
                 String username = edUsername.getText().toString();
                 String password = edPassword.getText().toString();
                 String IDun = "admin123";
                 String IDpass = "123";
-                if(username.length()==0 || password.length()==0){
-                    Toast.makeText(getApplicationContext(),"Please fill All details", Toast.LENGTH_SHORT).show();
+                if (username.length() == 0 || password.length() == 0) {
+                    Toast.makeText(getApplicationContext(), "Please fill All details", Toast.LENGTH_SHORT).show();
                     edUsername.setText("");
                     edPassword.setText("");
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this, home.class));
                 } else {
-                    Toast.makeText(getApplicationContext(),"Incorrect Details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Incorrect Details", Toast.LENGTH_SHORT).show();
                     edUsername.setText("");
                     edPassword.setText("");
                 }
