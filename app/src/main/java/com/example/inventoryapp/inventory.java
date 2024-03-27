@@ -10,9 +10,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.List;
+import android.view.View;
+import android.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.widget.EditText;
 
 
-public class inventory extends AppCompatActivity {
+
+
+public class inventory extends AppCompatActivity implements productAdapter.OnEditClickListener {
 
     RecyclerView recyclerView;
     private productAdapter adapter;
@@ -36,21 +42,62 @@ public class inventory extends AppCompatActivity {
         updateRecyclerView();
     }
 
-    // Method to update RecyclerView with the latest data from the database
     private void updateRecyclerView() {
         List<product> productList = dataSource.fetchDataFromDatabase();
 
         if (adapter == null) {
-            // If adapter is null, create a new one and set it to the RecyclerView
             adapter = new productAdapter(productList);
+            adapter.setOnEditClickListener(this); // Set edit click listener
             recyclerView.setAdapter(adapter);
         } else {
-            // If adapter already exists, update its dataset
             adapter.updateData(productList);
         }
     }
 
+    @Override
+    public void onEditClick(int position) {
+        // Handle edit action here
+        product productToEdit = adapter.productList.get(position);
+        showEditPopup(productToEdit);
+    }
 
+
+    private void showEditPopup(product productToEdit) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.edit, null);
+
+        EditText editName = view.findViewById(R.id.productNameEditText);
+        EditText editModelNumber = view.findViewById(R.id.modelNumberEditText);
+        EditText editPrice = view.findViewById(R.id.priceEditText);
+
+        // Set current values
+        editName.setText(productToEdit.getProductName());
+        editModelNumber.setText(productToEdit.getModelNumber());
+        editPrice.setText(String.valueOf(productToEdit.getPrice()));
+
+        builder.setView(view)
+                .setTitle("Edit Product")
+                .setPositiveButton("Save", (dialog, which) -> {
+                    String newName = editName.getText().toString();
+                    String newModelNumber = editModelNumber.getText().toString();
+                    int newPrice = Integer.parseInt(editPrice.getText().toString());
+
+                    // Update product details in database
+                    productToEdit.setProductName(newName);
+                    productToEdit.setModelNumber(newModelNumber);
+                    productToEdit.setPrice(newPrice);
+                    dataSource.updateProduct(productToEdit);
+
+                    // Update RecyclerView
+                    updateRecyclerView();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 }
+
 

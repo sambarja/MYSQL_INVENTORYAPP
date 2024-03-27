@@ -53,6 +53,26 @@ public class InventoryDataSource {
                 new String[]{modelNumber});
     }
 
+    public void updateProduct(product updatedProduct) {
+        open();
+        ContentValues values = new ContentValues();
+        values.put(InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME, updatedProduct.getProductName());
+        values.put(InventoryContract.ProductEntry.COLUMN_NAME_PRICE, updatedProduct.getPrice());
+        values.put(InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER, updatedProduct.getModelNumber());
+
+        String selection = InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER + " = ?";
+        String[] selectionArgs = { updatedProduct.getModelNumber() };
+
+        database.update(
+                InventoryContract.ProductEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs
+        );
+        close();
+    }
+
+
     public List<product> searchProducts(String searchTerm) {
         List<product> products = new ArrayList<>();
 
