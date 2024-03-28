@@ -1,10 +1,11 @@
 package com.example.inventoryapp;
 
 public class product {
-    private int si,price,quantity;
+    private double price;
+    private int si,quantity;
     private String modelNumber,brand,productName;
 
-    public product(int si, int price, int quantity,String modelNumber, String brand,String productName){
+    public product(int si, double price, int quantity,String modelNumber, String brand,String productName){
         this.si = si;
         this.price = price;
         this.quantity = quantity;
@@ -39,7 +40,7 @@ public class product {
         return si;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -69,7 +70,7 @@ public class product {
         this.modelNumber = modelNumber;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

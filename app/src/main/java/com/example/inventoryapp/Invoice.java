@@ -5,11 +5,11 @@ public class Invoice {
     private int Si,quantity;
 
     public Invoice() {
+        this.modelNumber = modelNumber;
     }
 
     public Invoice(String user, String modelNumber, String date, String activityType, int Si, int quantity) {
         this.user = user;
-        this.modelNumber = modelNumber;
         this.date = date;
         this.activityType = activityType;
         this.Si = Si;

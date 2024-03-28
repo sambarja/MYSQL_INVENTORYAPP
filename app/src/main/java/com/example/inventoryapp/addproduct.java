@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.List;
+
 public class addproduct extends AppCompatActivity {
 
     EditText modelNumber, productName, si, brand, price, quantity;
@@ -31,6 +33,7 @@ public class addproduct extends AppCompatActivity {
         });
 
         InvoiceActivity dataSource = new InvoiceActivity(this);
+        InventoryDataSource lol = new InventoryDataSource(this);
 
         modelNumber = findViewById(R.id.editTextModelNumber);
         si = findViewById(R.id.editTextSi);
@@ -109,7 +112,7 @@ public class addproduct extends AppCompatActivity {
                     // Add data to the inventory table
                     int quantityValue = Integer.parseInt(quantityText);
                     int siValue = Integer.parseInt(siText);
-                    int priceValue = Integer.parseInt(priceText);
+                    double priceValue = Double.parseDouble(priceText);
 
                     product newProduct = new product(siValue, priceValue, quantityValue, modelNumberText, brandText, nameText);
 
@@ -122,6 +125,15 @@ public class addproduct extends AppCompatActivity {
                     brand.setText("");
                     price.setText("");
                     quantity.setText("0");
+
+                    List<product> productList = lol.fetchDataFromDatabase();
+                    System.out.println("Inventory:");
+                    for (product product : productList) {
+                        System.out.println("Product Name: " + product.getProductName() +
+                                ", Model Number: " + product.getModelNumber() +
+                                ", Quantity: " + product.getQuantity() +
+                                ", Price: " + product.getPrice());
+                    }
                 }
             }
         });

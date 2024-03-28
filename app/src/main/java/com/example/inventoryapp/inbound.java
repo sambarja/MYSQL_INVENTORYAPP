@@ -56,6 +56,7 @@ public class inbound extends AppCompatActivity {
                     // Increment quantity by 1
                     int initialQuantity = Integer.parseInt(quantityText);
                     int finalQuantityM = initialQuantity + 1;
+
                     quantity.setText(String.valueOf(finalQuantityM));
                 }
             }

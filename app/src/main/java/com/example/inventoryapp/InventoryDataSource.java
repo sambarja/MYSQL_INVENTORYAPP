@@ -53,25 +53,6 @@ public class InventoryDataSource {
                 new String[]{modelNumber});
     }
 
-    public void updateProduct(product updatedProduct) {
-        open();
-        ContentValues values = new ContentValues();
-        values.put(InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME, updatedProduct.getProductName());
-        values.put(InventoryContract.ProductEntry.COLUMN_NAME_PRICE, updatedProduct.getPrice());
-        values.put(InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER, updatedProduct.getModelNumber());
-
-        String selection = InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER + " = ?";
-        String[] selectionArgs = { updatedProduct.getModelNumber() };
-
-        database.update(
-                InventoryContract.ProductEntry.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs
-        );
-        close();
-    }
-
 
     public List<product> searchProducts(String searchTerm) {
         List<product> products = new ArrayList<>();
@@ -179,7 +160,7 @@ public class InventoryDataSource {
     }
 
 
-    public void updateQuantityByModelNumber(String modelNumber, int quantity) {
+    public void updateQuantityByModelNumber(String modelNumber, double quantity) {
             // Update the quantity in the inventory table
             ContentValues values = new ContentValues();
             values.put(InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY, quantity);
@@ -194,7 +175,44 @@ public class InventoryDataSource {
                     selectionArgs
             );
         }
+    public void updateProduct(product updatedProduct, String previousModelNumber) {
+        open();
 
+        ContentValues values = new ContentValues();
+        values.put(InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME, updatedProduct.getProductName());
+        values.put(InventoryContract.ProductEntry.COLUMN_NAME_PRICE, updatedProduct.getPrice());
+        values.put(InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER, updatedProduct.getModelNumber());
+        values.put(InventoryContract.ProductEntry.COLUMN_NAME_SI, updatedProduct.getSi());
+        values.put(InventoryContract.ProductEntry.COLUMN_NAME_BRAND, updatedProduct.getBrand());
+        values.put(InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY, updatedProduct.getQuantity());
+
+        String selection = InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER + " = ?";
+        String[] selectionArgs = { previousModelNumber }; // Use the previous model number
+
+        int rowsAffected = database.update(
+                InventoryContract.ProductEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs
+        );
+
+        if (rowsAffected > 0) {
+            // Update was successful
+            System.out.println("Product updated successfully.");
+        } else {
+            // Update failed
+            System.out.println("Failed to update product.");
+        }
+
+        close();
+    }
+
+
+
+
+
+
+    // Modify the fetchDataFromDatabase method in InventoryDataSource to correctly retrieve the price
     public List<product> fetchDataFromDatabase() {
         open();
         List<product> productList = new ArrayList<>();
@@ -203,7 +221,10 @@ public class InventoryDataSource {
         String[] projection = {
                 InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME,
                 InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER,
-                InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY
+                InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY,
+                InventoryContract.ProductEntry.COLUMN_NAME_PRICE, // Include price
+                InventoryContract.ProductEntry.COLUMN_NAME_SI, // Include SI
+                InventoryContract.ProductEntry.COLUMN_NAME_BRAND // Include brand
         };
 
         // Execute the query
@@ -220,11 +241,14 @@ public class InventoryDataSource {
         // Iterate over the result set and create Product objects
         if (cursor != null) {
             while (cursor.moveToNext()) {
-                String modelName = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME));
+                String productName = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME));
                 String modelNumber = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER));
                 int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY));
+                double price = cursor.getDouble(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_PRICE)); // Retrieve price
+                int si = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_SI)); // Retrieve SI
+                String brand = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_BRAND)); // Retrieve brand
 
-                product product = new product(modelName, modelNumber, quantity);
+                product product = new product(si, price, quantity, modelNumber, brand, productName); // Pass retrieved values
                 productList.add(product);
             }
             cursor.close();
@@ -234,6 +258,7 @@ public class InventoryDataSource {
 
         return productList;
     }
+
 
 }
 

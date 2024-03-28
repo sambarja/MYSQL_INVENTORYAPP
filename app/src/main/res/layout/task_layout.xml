@@ -23,7 +23,7 @@
                 <TextView
                     android:id="@+id/modelName"
                     android:layout_width="match_parent"
-                    android:layout_height="27dp"
+                    android:layout_height="35dp"
                     android:text="Model Name"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
@@ -34,7 +34,7 @@
                 <TextView
                     android:id="@+id/modelNumber"
                     android:layout_width="match_parent"
-                    android:layout_height="22dp"
+                    android:layout_height="25dp"
                     android:layout_marginLeft="10dp"
                     android:text="Model Number"
                     android:layout_gravity="left"
