@@ -39,6 +39,24 @@
         app:layout_constraintVertical_bias="0.661"
         android:theme="@style/activate"/>
 
+
+    <TextView
+        android:id="@+id/registerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Register Now"
+        android:textColor="@color/light_red"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.757"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintVertical_bias="0.39">
+
+    </TextView>
+
     <Button
         android:id="@+id/loginButton"
         android:layout_width="169dp"

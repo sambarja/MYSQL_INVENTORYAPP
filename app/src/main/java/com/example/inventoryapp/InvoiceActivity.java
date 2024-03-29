@@ -1,10 +1,15 @@
 package com.example.inventoryapp;
 import android.content.Context;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.os.Build;
+import android.content.Intent;
 
 
 public class InvoiceActivity {
 
     private InventoryDataSource dataSource; // Assuming you have a class to handle database operations
+
 
     public InvoiceActivity(Context context) {
         dataSource = new InventoryDataSource(context);
@@ -74,4 +79,8 @@ public class InvoiceActivity {
         dataSource.deleteProduct(modelNumberText);
         dataSource.close();
     }
+
+
+
+
 }

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class InventorydbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "Inventory.db";
 
     private static final String SQL_CREATE_PRODUCTS_TABLE =
@@ -32,6 +32,7 @@ public class InventorydbHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + InventoryContract.UserEntry.TABLE_NAME + " (" +
                     InventoryContract.UserEntry._ID + " INTEGER PRIMARY KEY," +
                     InventoryContract.UserEntry.COLUMN_NAME_USERNAME + " TEXT," +
+                    InventoryContract.UserEntry.COLUMN_NAME_NAME + " TEXT," +
                     InventoryContract.UserEntry.COLUMN_NAME_PASSWORD + " TEXT)";
 
     private static final String SQL_DELETE_PRODUCTS_TABLE =

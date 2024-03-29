@@ -11,32 +11,37 @@ import androidx.core.view.WindowInsetsCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Menu;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.OnApplyWindowInsetsListener;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.core.view.GravityCompat;
 
 public class home extends AppCompatActivity {
 
     CardView choice1, choice2, choice3, choice4, choice5, choice6, cardView;
     ImageView menu;
 
+    private AppBarConfiguration mAppBarConfiguration;
+    DrawerLayout drawerLayout;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        drawerLayout = findViewById(R.id.drawer_home);
+
+
 
         choice1 = findViewById(R.id.choice1);
         choice2 = findViewById(R.id.choice2);
@@ -46,6 +51,19 @@ public class home extends AppCompatActivity {
         choice6 = findViewById(R.id.choice6);
         cardView = findViewById(R.id.cardView);
         menu = findViewById(R.id.menuImage);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+            }
+        });
+
+
 
         choice1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,13 +113,6 @@ public class home extends AppCompatActivity {
 
         });
 
-        /*menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(home.this, menu.class));
-            }
-
-        });*/
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,5 +121,21 @@ public class home extends AppCompatActivity {
             }
 
         });
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_menu);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 }

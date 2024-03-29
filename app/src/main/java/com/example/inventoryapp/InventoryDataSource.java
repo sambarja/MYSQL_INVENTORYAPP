@@ -6,11 +6,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
+import androidx.core.app.NotificationCompat;
+
 
 public class InventoryDataSource {
 
     private SQLiteDatabase database;
     private InventorydbHelper dbHelper;
+
 
     public InventoryDataSource(Context context) {
         dbHelper = new InventorydbHelper(context);
@@ -23,6 +29,7 @@ public class InventoryDataSource {
     public void close() {
         dbHelper.close();
     }
+
 
     public void addProduct(product product) {
         ContentValues values = new ContentValues();
@@ -52,6 +59,7 @@ public class InventoryDataSource {
                 InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER + " = ?",
                 new String[]{modelNumber});
     }
+
 
 
     public List<product> searchProducts(String searchTerm) {
@@ -258,6 +266,10 @@ public class InventoryDataSource {
 
         return productList;
     }
+
+
+
+
 
 
 }
