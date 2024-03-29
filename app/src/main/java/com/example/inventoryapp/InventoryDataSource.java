@@ -6,10 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.os.Build;
-import androidx.core.app.NotificationCompat;
+
 
 
 public class InventoryDataSource {
@@ -217,10 +214,6 @@ public class InventoryDataSource {
 
 
 
-
-
-
-    // Modify the fetchDataFromDatabase method in InventoryDataSource to correctly retrieve the price
     public List<product> fetchDataFromDatabase() {
         open();
         List<product> productList = new ArrayList<>();
@@ -230,9 +223,9 @@ public class InventoryDataSource {
                 InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME,
                 InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER,
                 InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY,
-                InventoryContract.ProductEntry.COLUMN_NAME_PRICE, // Include price
-                InventoryContract.ProductEntry.COLUMN_NAME_SI, // Include SI
-                InventoryContract.ProductEntry.COLUMN_NAME_BRAND // Include brand
+                InventoryContract.ProductEntry.COLUMN_NAME_PRICE,
+                InventoryContract.ProductEntry.COLUMN_NAME_SI,
+                InventoryContract.ProductEntry.COLUMN_NAME_BRAND
         };
 
         // Execute the query

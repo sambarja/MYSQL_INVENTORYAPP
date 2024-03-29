@@ -3,6 +3,7 @@ package com.example.inventoryapp;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
@@ -10,17 +11,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.os.Bundle;
-import android.view.View;
-import android.view.Menu;
+import android.widget.TextView;
+import android.util.Log;
 
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
+
+import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.view.GravityCompat;
 
@@ -29,7 +29,11 @@ public class home extends AppCompatActivity {
     CardView choice1, choice2, choice3, choice4, choice5, choice6, cardView;
     ImageView menu;
 
-    private AppBarConfiguration mAppBarConfiguration;
+    NavigationView navigationView;
+
+    TextView usernameText,nameText;
+
+
     DrawerLayout drawerLayout;
 
 
@@ -37,9 +41,23 @@ public class home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.menu_home);
+
+        userDataSource uds = new userDataSource(this);
+
+        User user = uds.getUserDetails();
+        Log.d("UserDetails", "Username: " + user.getUsername() + ", Name: " + user.getName());
+
 
         drawerLayout = findViewById(R.id.drawer_home);
+        navigationView = findViewById(R.id.nav_view);
+        usernameText = findViewById(R.id.username);
+        nameText = findViewById(R.id.name);
+
+        usernameText.setText(user.getUsername());
+        nameText.setText(user.getName());
+
+
 
 
 
@@ -55,11 +73,51 @@ public class home extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                } else {
-                    drawerLayout.openDrawer(GravityCompat.START);
+                drawerLayout.open();
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int itemId = menuItem.getItemId();
+
+                if (itemId == R.id.nav_home){
+
+
                 }
+                if (itemId == R.id.nav_inventory){
+                    startActivity(new Intent(home.this, inventory.class));
+
+                }
+                if (itemId == R.id.nav_inbound){
+                    startActivity(new Intent(home.this, inbound.class));
+
+                }
+                if (itemId == R.id.nav_outbound){
+                    startActivity(new Intent(home.this, outbound.class));
+
+                }
+                if (itemId == R.id.nav_add){
+                    startActivity(new Intent(home.this, addproduct.class));
+
+                }
+                if (itemId == R.id.nav_delete){
+                    startActivity(new Intent(home.this, deleteproduct.class));
+
+                }
+                if (itemId == R.id.nav_analytics){
+                    startActivity(new Intent(home.this, Analytics.class));
+
+                }
+                if (itemId == R.id.logout){
+                    startActivity(new Intent(home.this, logout.class));
+
+                }
+
+                drawerLayout.close();
+
+                return false;
             }
         });
 
@@ -126,17 +184,5 @@ public class home extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_menu);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
 }
