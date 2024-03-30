@@ -1,17 +1,26 @@
 package com.example.inventoryapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,15 +31,18 @@ public class inbound extends AppCompatActivity {
 
     CardView add,subtract;
 
+    DrawerLayout drawerLayout;
+
+    NavigationView navigationView;
+
+    ImageView menu;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inbound);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        setContentView(R.layout.menu_inbound);
+
 
         InvoiceActivity dataSource = new InvoiceActivity(this);
 
@@ -41,6 +53,59 @@ public class inbound extends AppCompatActivity {
         done = findViewById(R.id.doneBtn);
         subtract = findViewById(R.id.SubtractBtn);
         add = findViewById(R.id.AddBtn);
+        menu = findViewById(R.id.menuImage);
+
+        drawerLayout = findViewById(R.id.drawer_inbound);
+        navigationView = findViewById(R.id.nav_view);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.open();
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int itemId = menuItem.getItemId();
+
+                if (itemId == R.id.nav_home){
+                    startActivity(new Intent(inbound.this, home.class));
+                }
+                if (itemId == R.id.nav_inventory){
+                    startActivity(new Intent(inbound.this, inventory.class));
+
+                }
+                if (itemId == R.id.nav_inbound){
+
+                }
+                if (itemId == R.id.nav_outbound){
+                    startActivity(new Intent(inbound.this, outbound.class));
+
+                }
+                if (itemId == R.id.nav_add){
+                    startActivity(new Intent(inbound.this, addproduct.class));
+
+                }
+                if (itemId == R.id.nav_delete){
+                    startActivity(new Intent(inbound.this, deleteproduct.class));
+
+                }
+                if (itemId == R.id.nav_analytics){
+                    startActivity(new Intent(inbound.this, Analytics.class));
+
+                }
+                if (itemId == R.id.logout){
+                    startActivity(new Intent(inbound.this, logout.class));
+
+                }
+
+                drawerLayout.close();
+
+                return false;
+            }
+        });
 
         // Set input filter to allow only numbers
         quantity.setFilters(new InputFilter[]{new NumberInputFilter()});

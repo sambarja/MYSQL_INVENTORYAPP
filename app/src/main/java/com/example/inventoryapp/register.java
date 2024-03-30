@@ -24,6 +24,7 @@ public class register extends AppCompatActivity {
 
     ImageView back;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class register extends AppCompatActivity {
             return insets;
         });
 
+
         userDataSource udb = new userDataSource(this);
 
         edUsername = findViewById(R.id.userid);
@@ -42,6 +44,10 @@ public class register extends AppCompatActivity {
         edConPass = findViewById(R.id.confirmpass);
         register = findViewById(R.id.registerbtn);
         back = findViewById(R.id.back);
+
+
+
+
 
 
         back.setOnClickListener(new View.OnClickListener() {

@@ -9,6 +9,7 @@ public class InventorydbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "Inventory.db";
 
+
     private static final String SQL_CREATE_PRODUCTS_TABLE =
             "CREATE TABLE " + InventoryContract.ProductEntry.TABLE_NAME + " (" +
                     InventoryContract.ProductEntry.COLUMN_NAME_SI + " INTEGER PRIMARY KEY," +

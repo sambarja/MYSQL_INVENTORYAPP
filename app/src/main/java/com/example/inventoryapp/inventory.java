@@ -1,27 +1,31 @@
 package com.example.inventoryapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.List;
+
+import android.view.MenuItem;
 import android.view.View;
 import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Toast;
+import android.widget.ImageView;
 import java.util.ArrayList;
 import android.text.TextUtils;
 
-
-
-
+import com.google.android.material.navigation.NavigationView;
 
 
 public class inventory extends AppCompatActivity implements productAdapter.OnEditClickListener {
@@ -30,21 +34,25 @@ public class inventory extends AppCompatActivity implements productAdapter.OnEdi
     private productAdapter adapter;
     private InventoryDataSource dataSource;
     SearchView searchView;
+    ImageView menu;
+
+    DrawerLayout drawerLayout;
+
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_inventory);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        setContentView(R.layout.menu_inventory);
+
 
         dataSource = new InventoryDataSource(this);
         recyclerView = findViewById(R.id.recyclerView);
         searchView = findViewById(R.id.searchView);
+        menu = findViewById(R.id.menuImage);
+
+        navigationView = findViewById(R.id.nav_view);
+        drawerLayout = findViewById(R.id.drawer_inventory);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         List<product> productList = dataSource.fetchDataFromDatabase();
@@ -73,6 +81,58 @@ public class inventory extends AppCompatActivity implements productAdapter.OnEdi
                                       }
 
         );
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.open();
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int itemId = menuItem.getItemId();
+
+                if (itemId == R.id.nav_home){
+
+                    startActivity(new Intent(inventory.this, home.class));
+                }
+                if (itemId == R.id.nav_inventory){
+
+                }
+                if (itemId == R.id.nav_inbound){
+                    startActivity(new Intent(inventory.this, inbound.class));
+
+                }
+                if (itemId == R.id.nav_outbound){
+                    startActivity(new Intent(inventory.this, outbound.class));
+
+                }
+                if (itemId == R.id.nav_add){
+                    startActivity(new Intent(inventory.this, addproduct.class));
+
+                }
+                if (itemId == R.id.nav_delete){
+                    startActivity(new Intent(inventory.this, deleteproduct.class));
+
+                }
+                if (itemId == R.id.nav_analytics){
+                    startActivity(new Intent(inventory.this, Analytics.class));
+
+                }
+                if (itemId == R.id.logout){
+                    startActivity(new Intent(inventory.this, logout.class));
+
+                }
+
+                drawerLayout.close();
+
+                return false;
+            }
+        });
+
+
     }
 
     private void filter(String query,List<product> productList) {

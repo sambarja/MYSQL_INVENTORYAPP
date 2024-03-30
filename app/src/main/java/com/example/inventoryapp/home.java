@@ -43,10 +43,8 @@ public class home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_home);
 
-        userDataSource uds = new userDataSource(this);
 
-        User user = uds.getUserDetails();
-        Log.d("UserDetails", "Username: " + user.getUsername() + ", Name: " + user.getName());
+
 
 
         drawerLayout = findViewById(R.id.drawer_home);
@@ -54,8 +52,7 @@ public class home extends AppCompatActivity {
         usernameText = findViewById(R.id.username);
         nameText = findViewById(R.id.name);
 
-        usernameText.setText(user.getUsername());
-        nameText.setText(user.getName());
+
 
 
 
@@ -111,7 +108,7 @@ public class home extends AppCompatActivity {
 
                 }
                 if (itemId == R.id.logout){
-                    startActivity(new Intent(home.this, logout.class));
+                    logout.logout(home.this);
 
                 }
 

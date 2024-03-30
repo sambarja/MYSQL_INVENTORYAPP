@@ -25,15 +25,18 @@ public class userDataSource {
     }
 
     public void insertUser(User user) {
+
         ContentValues values = new ContentValues();
         values.put(InventoryContract.UserEntry.COLUMN_NAME_USERNAME, user.getUsername());
         values.put(InventoryContract.UserEntry.COLUMN_NAME_NAME, user.getName());
         values.put(InventoryContract.UserEntry.COLUMN_NAME_PASSWORD, user.getPassword());
 
         long newRowId = database.insert(InventoryContract.UserEntry.TABLE_NAME,null,values);
+
     }
 
     public boolean isUsernameExists(String username) {
+        open();
 
         String[] projection = {InventoryContract.UserEntry._ID};
         String selection = InventoryContract.UserEntry.COLUMN_NAME_USERNAME + " = ?";
