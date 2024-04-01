@@ -118,7 +118,7 @@ public class inventory extends AppCompatActivity implements productAdapter.OnEdi
 
                 }
                 if (itemId == R.id.nav_analytics){
-                    startActivity(new Intent(inventory.this, Analytics.class));
+                    startActivity(new Intent(inventory.this, analytics.class));
 
                 }
                 if (itemId == R.id.logout){

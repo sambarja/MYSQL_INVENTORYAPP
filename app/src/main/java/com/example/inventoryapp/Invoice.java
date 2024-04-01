@@ -4,6 +4,8 @@ public class Invoice {
     private String user,modelNumber,date,activityType;
     private int Si,quantity;
 
+    public product product;
+
     public Invoice() {
         this.modelNumber = modelNumber;
     }

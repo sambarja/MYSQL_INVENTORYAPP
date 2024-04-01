@@ -80,7 +80,7 @@ public class deleteproduct extends AppCompatActivity {
 
                 }
                 if (itemId == R.id.nav_analytics){
-                    startActivity(new Intent(deleteproduct.this, Analytics.class));
+                    startActivity(new Intent(deleteproduct.this, analytics.class));
 
                 }
                 if (itemId == R.id.logout){

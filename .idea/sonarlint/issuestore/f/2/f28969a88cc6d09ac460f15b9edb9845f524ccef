@@ -1,0 +1,15 @@
+
+‹
+java:S1192"JDefine a constant instead of duplicating this literal " INTEGER," 3 times.(ÙëÖ¨øÿÿÿÿJ$652e978b-e71b-494c-9ad3-80558d0a1601
+‰
+java:S1192"HDefine a constant instead of duplicating this literal " TEXT," 10 times.(„½ÛÖüÿÿÿÿJ$54e752ca-a662-4d57-aa57-332d08963509
+Š
+java:S1192"NDefine a constant instead of duplicating this literal "CREATE TABLE " 3 times.(ûšğ•J$7e9ef0c7-31b4-4385-bfa0-47544258d601
+’
+java:S1192"VDefine a constant instead of duplicating this literal " INTEGER PRIMARY KEY," 3 times.(ıŞ¨šJ$c1e13b40-92fa-4d3e-854c-38f1f141a7c7
+’
+java:S1192*"VDefine a constant instead of duplicating this literal "DROP TABLE IF EXISTS " 3 times.(£ ¡×J$c7d75dd5-5bdf-4f81-b8f5-c661baf3b27f
+
+java:S3252"@Use static access with "android.provider.BaseColumns" for "_ID".(äåÓÈúÿÿÿÿJ$0a51d385-b502-4e1a-9970-f27c0c185639
+‚
+java:S3252$"@Use static access with "android.provider.BaseColumns" for "_ID".(’Í®8»¸Ô”é1J$2079b497-d8f9-424d-970a-51c94285755b

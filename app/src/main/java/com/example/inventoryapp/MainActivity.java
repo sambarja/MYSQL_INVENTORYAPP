@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
@@ -52,8 +53,13 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is already logged in
         if (sharedPreferences.getBoolean("loggedIn", false)) {
             // If logged in, directly open home activity
-            startActivity(new Intent(MainActivity.this, home.class));
-            finish(); // Finish this activity to prevent going back to login screen
+            String user_cred = sharedPreferences.getString("user", "");
+            String[] creds = user_cred.split("_");
+            if (authenticateUser(creds[0], creds[1])) {
+                startActivity(new Intent(MainActivity.this, home.class));
+                finish(); // Finish this activity to prevent going back to login screen
+            }
+
         }
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         // Mark user as logged in
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("loggedIn", true);
+                        editor.putString("user", username + "_" + password);
                         editor.apply();
 
                         Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
@@ -94,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean authenticateUser(String username, String password) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String[] projection = {InventoryContract.UserEntry._ID};
+        String[] projection = {InventoryContract.UserEntry._ID, InventoryContract.UserEntry.COLUMN_NAME_NAME};
         String selection = InventoryContract.UserEntry.COLUMN_NAME_USERNAME + " = ? AND " +
                 InventoryContract.UserEntry.COLUMN_NAME_PASSWORD + " = ?";
         String[] selectionArgs = {username, password};
@@ -107,6 +114,13 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 null
         );
+        User user = null;
+        if (cursor != null && cursor.moveToFirst()) {
+            int index = cursor.getColumnIndexOrThrow(InventoryContract.UserEntry.COLUMN_NAME_NAME);
+            String retrievedName = cursor.getString(index);
+            user = new User(username, retrievedName);
+        }
+        SessionData.getInstance().user = user;
         boolean authenticated = cursor.getCount() > 0;
         cursor.close();
         return authenticated;

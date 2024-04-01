@@ -93,7 +93,7 @@ public class inbound extends AppCompatActivity {
 
                 }
                 if (itemId == R.id.nav_analytics){
-                    startActivity(new Intent(inbound.this, Analytics.class));
+                    startActivity(new Intent(inbound.this, analytics.class));
 
                 }
                 if (itemId == R.id.logout){

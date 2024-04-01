@@ -1,0 +1,12 @@
+
+ˆ	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Ã¬ù•J$a1399f2a-14c8-403b-968f-446f6a427e88
+}
+java:S1854!"<Remove this useless assignment to local variable "newRowId".(ú‘ƒõüÿÿÿÿJ$cc7153cb-be66-4ba8-b6c3-4d46f0256ee8
+n
+java:S1481!"-Remove this unused "newRowId" local variable.(ú‘ƒõüÿÿÿÿJ$73fb2d5f-db20-4e14-90a7-51e92f919f0d
+ˆ
+java:S3252("@Use static access with "android.provider.BaseColumns" for "_ID".(Öü¿³ÿÿÿÿÿ8ˆÔ„é1J$c8895c06-3201-42a6-a9c2-ecec412fa639
+s
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8 ˆÔ„é1J$521e5042-51ac-4121-9304-b63a91f3a4e5
+s
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8 ˆÔ„é1J$86a13511-3bff-4482-aff0-081a404415ec

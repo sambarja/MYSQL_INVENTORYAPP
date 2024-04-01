@@ -94,7 +94,7 @@ public class addproduct extends AppCompatActivity {
 
                 }
                 if (itemId == R.id.nav_analytics){
-                    startActivity(new Intent(addproduct.this, Analytics.class));
+                    startActivity(new Intent(addproduct.this, analytics.class));
 
                 }
                 if (itemId == R.id.logout){

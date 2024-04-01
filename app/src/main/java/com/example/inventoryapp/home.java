@@ -1,5 +1,8 @@
 package com.example.inventoryapp;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -11,18 +14,20 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.util.Log;
-
-
+import android.widget.Toast;
 
 
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.view.GravityCompat;
+
+import java.util.Calendar;
 
 public class home extends AppCompatActivity {
 
@@ -42,21 +47,15 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_home);
-
-
-
-
-
         drawerLayout = findViewById(R.id.drawer_home);
         navigationView = findViewById(R.id.nav_view);
-        usernameText = findViewById(R.id.username);
-        nameText = findViewById(R.id.name);
+        View headerView = navigationView.getHeaderView(0);
+        usernameText = headerView.findViewById(R.id.username);
+        nameText = headerView.findViewById(R.id.name);
 
-
-
-
-
-
+        User user = SessionData.getInstance().user;
+        usernameText.setText(user.getUsername());
+        nameText.setText(user.getName());
 
         choice1 = findViewById(R.id.choice1);
         choice2 = findViewById(R.id.choice2);
@@ -104,7 +103,7 @@ public class home extends AppCompatActivity {
 
                 }
                 if (itemId == R.id.nav_analytics){
-                    startActivity(new Intent(home.this, Analytics.class));
+                    startActivity(new Intent(home.this, analytics.class));
 
                 }
                 if (itemId == R.id.logout){
@@ -164,7 +163,7 @@ public class home extends AppCompatActivity {
         choice6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(home.this, Analytics.class));
+                startActivity(new Intent(home.this, analytics.class));
             }
 
         });
@@ -173,12 +172,31 @@ public class home extends AppCompatActivity {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(home.this, Analytics.class));
+                startActivity(new Intent(home.this, analytics.class));
             }
 
         });
 
+        NotificationHelper.requestNotificationPermission(home.this);
+        scheduleTask();
+    }
 
+    private void scheduleTask() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getApplicationContext(), InventoryBroadcast.class);
+        intent.setAction("com.example.inventoryapp");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        // Set the alarm to start at midnight
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        // Schedule the task to repeat every day
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        Toast.makeText(this, "Daily Monitoring initiated", Toast.LENGTH_SHORT).show();
     }
 
 

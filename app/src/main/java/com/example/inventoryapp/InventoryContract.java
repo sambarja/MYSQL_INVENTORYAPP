@@ -9,6 +9,9 @@ public final class InventoryContract {
     /* Inner class that defines the table contents */
     public static class ProductEntry implements BaseColumns {
         public static final String TABLE_NAME = "products";
+
+        public static final String USER_ID = "userid";
+
         public static final String COLUMN_NAME_PRODUCT_NAME = "product_name";
         public static final String COLUMN_NAME_PRICE = "price";
         public static final String COLUMN_NAME_MODEL_NUMBER = "model_number";

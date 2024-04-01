@@ -30,7 +30,6 @@ public class userDataSource {
         values.put(InventoryContract.UserEntry.COLUMN_NAME_USERNAME, user.getUsername());
         values.put(InventoryContract.UserEntry.COLUMN_NAME_NAME, user.getName());
         values.put(InventoryContract.UserEntry.COLUMN_NAME_PASSWORD, user.getPassword());
-
         long newRowId = database.insert(InventoryContract.UserEntry.TABLE_NAME,null,values);
 
     }

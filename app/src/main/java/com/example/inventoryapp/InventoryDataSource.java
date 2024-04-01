@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,7 @@ public class InventoryDataSource {
 
     public void addProduct(product product) {
         ContentValues values = new ContentValues();
+        values.put(InventoryContract.ProductEntry.USER_ID, SessionData.getInstance().user.getUsername());
         values.put(InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME, product.getProductName());
         values.put(InventoryContract.ProductEntry.COLUMN_NAME_PRICE, product.getPrice());
         values.put(InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER, product.getModelNumber());
@@ -48,6 +52,7 @@ public class InventoryDataSource {
         values.put(InventoryContract.InvoiceEntry.COLUMN_NAME_QUANTITY, invoice.getQuantity());
         values.put(InventoryContract.InvoiceEntry.COLUMN_NAME_DATE, invoice.getDate());
         values.put(InventoryContract.InvoiceEntry.COLUMN_NAME_ACTIVITY_TYPE, invoice.getActivityType());
+        values.put(InventoryContract.ProductEntry.USER_ID, SessionData.getInstance().user.getUsername());
         long newRowId = database.insert(InventoryContract.InvoiceEntry.TABLE_NAME, null, values);
     }
 
@@ -218,22 +223,16 @@ public class InventoryDataSource {
         open();
         List<product> productList = new ArrayList<>();
 
-        // Define the columns you want to retrieve
-        String[] projection = {
-                InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME,
-                InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER,
-                InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY,
-                InventoryContract.ProductEntry.COLUMN_NAME_PRICE,
-                InventoryContract.ProductEntry.COLUMN_NAME_SI,
-                InventoryContract.ProductEntry.COLUMN_NAME_BRAND
-        };
+        String selection =
+                InventoryContract.ProductEntry.USER_ID + " = ?";
+        String[] selectionArgs = {SessionData.getInstance().user.getUsername()};
 
         // Execute the query
         Cursor cursor = database.query(
                 InventoryContract.ProductEntry.TABLE_NAME,  // The table to query
-                projection,                                 // The columns to return
-                null,                                       // The columns for the WHERE clause
-                null,                                       // The values for the WHERE clause
+                null,                                       // The columns to return
+                selection,                                  // The columns for the WHERE clause
+                selectionArgs,                              // The values for the WHERE clause
                 null,                                       // Don't group the rows
                 null,                                       // Don't filter by row groups
                 null                                        // The sort order
@@ -241,6 +240,7 @@ public class InventoryDataSource {
 
         // Iterate over the result set and create Product objects
         if (cursor != null) {
+            int count = cursor.getCount();
             while (cursor.moveToNext()) {
                 String productName = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME));
                 String modelNumber = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER));
@@ -253,15 +253,97 @@ public class InventoryDataSource {
                 productList.add(product);
             }
             cursor.close();
+            Log.d("products", "count: " + count);
+        }else{
+            Log.d("products", "cursor_null");
         }
 
         close();
-
+        Log.d("products", String.valueOf(productList.size()));
         return productList;
     }
 
 
+    public List<Invoice> fetchInvoices() {
+        open();
+        List<Invoice> invoiceList = new ArrayList<>();
 
+        String selection =
+                InventoryContract.ProductEntry.USER_ID + " = ?";
+        String[] selectionArgs = {SessionData.getInstance().user.getUsername()};
+        Log.d("invoices", SessionData.getInstance().user.getUsername());
+
+        // Execute the query
+        Cursor cursor = database.query(
+                InventoryContract.InvoiceEntry.TABLE_NAME,  // The table to query
+                null,                                       // The columns to return
+                selection,                                  // The columns for the WHERE clause
+                selectionArgs,                              // The values for the WHERE clause
+                null,                                       // Don't group the rows
+                null,                                       // Don't filter by row groups
+                null                                        // The sort order
+        );
+
+        // Iterate over the result set and create Product objects
+        if (cursor != null) {
+            int count = cursor.getCount();
+            Log.d("invoices", String.valueOf(count));
+            while (cursor.moveToNext()) {
+                String modelNumber = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.InvoiceEntry.COLUMN_NAME_MODEL_NUMBER));
+                int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryContract.InvoiceEntry.COLUMN_NAME_QUANTITY));
+                int si = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryContract.InvoiceEntry.COLUMN_NAME_SI));
+                String date = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.InvoiceEntry.COLUMN_NAME_DATE));
+                String user = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.InvoiceEntry.COLUMN_NAME_USER));
+                String activityType = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.InvoiceEntry.COLUMN_NAME_ACTIVITY_TYPE));
+                product product = getProductByModelNumber(modelNumber);
+                Invoice invoice = new Invoice(user, modelNumber, date, activityType,si, quantity);
+                invoice.product = product;
+                invoiceList.add(invoice);
+                Log.d("invoices", date);
+            }
+        }else{
+
+        }
+
+        close();
+        return invoiceList;
+    }
+
+    public product getProductByModelNumber(String modelNumber) {
+        product product = null;
+
+        // Define the selection criteria
+        String selection = InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER + " = ?";
+
+        // Define the selection arguments (replace ? placeholders in selection)
+        String[] selectionArgs = {modelNumber};
+
+        // Execute the query
+        Cursor cursor = database.query(
+                InventoryContract.ProductEntry.TABLE_NAME,  // The table to query
+                null,                                       // The columns to return
+                selection,                                  // The columns for the WHERE clause
+                selectionArgs,                              // The values for the WHERE clause
+                null,                                       // Don't group the rows
+                null,                                       // Don't filter by row groups
+                null                                        // The sort order
+        );
+
+        // Extract product data from the result set
+        if (cursor != null && cursor.moveToFirst()) {
+            int si = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_SI));
+            String productName = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_PRODUCT_NAME));
+            int price = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_PRICE));
+            String brand = cursor.getString(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_BRAND));
+            int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY));
+            // Create a product object
+            product = new product(si, price, quantity, modelNumber, brand, productName);
+
+            cursor.close();
+        }
+
+        return product;
+    }
 
 
 

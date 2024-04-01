@@ -1,0 +1,19 @@
+
+k
+java:S1604<"(Make this anonymous inner class a lambda(ÁùÛ¡8­¼ÁÍé1J$51e6e143-3437-416e-8326-576b22e5d585
+p
+java:S1604C"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿ8®¼ÁÍé1J$5e835b3a-f3ad-47c4-99ab-b53b70711970
+p
+java:S1604q"(Make this anonymous inner class a lambda(ÿØ²øÿÿÿÿ8®¼ÁÍé1J$a1ddbed9-a4df-47e8-885e-b3e5f907412c
+k
+java:S1604"(Make this anonymous inner class a lambda(øá‡b8®¼ÁÍé1J$81e878a0-99ab-484b-a003-cdb4c9a643d8
+l
+java:S1604’"(Make this anonymous inner class a lambda(éê…¬8®¼ÁÍé1J$9d3ccf7f-2d04-4aaa-89a1-e5574ded3de0
+	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ø™‹ˆ8¯¼ÁÍé1J$494d5953-3d9b-4196-b5a8-bf41005dfeb2
+‡
+java:S1659"?Declare "si" and all following declarations on a separate line.(–é©‚üÿÿÿÿ8Ü¼ÁÍé1J$7a5af2e2-1bee-4104-8998-4a6eb647b8d0
+n
+java:S1659!"&Declare "subtract" on a separate line.(ë³¦£üÿÿÿÿ8Ü¼ÁÍé1J$d6c8c071-2c99-4480-88dc-737f94ca333b
+š
+java:S3776*"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(¨Œşÿÿÿÿ8ã¼ÁÍé1J$539c52e9-3c0b-46bf-82a7-fa847a81e270
+p	java:S108R")Either remove or fill this block of code.(¶®„Äøÿÿÿÿ8ê¼ÁÍé1J$8550fd77-a3a6-40f7-b597-6b6c2722ecd8

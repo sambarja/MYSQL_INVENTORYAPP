@@ -1,0 +1,22 @@
+
+—
+java:S1192Ó"NDefine a constant instead of duplicating this literal "activity_type" 3 times.(µÆÜ›øÿÿÿÿ8¸Éé1J$143ed8c9-05ad-4d9a-a9d7-72072e05621a
+”	java:S117È"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—§¹Ö8¸Éé1J$b5ff5c78-530e-4535-afca-e71ec5e50cba
+k
+java:S1604A"(Make this anonymous inner class a lambda(ÁùÛ¡8¥¸Éé1J$39972001-2a62-462f-bb4f-2625609ee03c
+p
+java:S1604H"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿ8¥¸Éé1J$6358dcd2-1ce9-45bf-a344-55f4b32e4af7
+	java:S101("MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(®Éé}8¦¸Éé1J$5b542da5-2327-4e23-879c-41c67d3dcf0f
+
+java:S2095—"JUse try-with-resources or close this "XSSFWorkbook" in a "finally" clause.(¸™á…8öœ¹Éé1J$cf84e8ae-a720-4506-baa5-730d550c8ca8
+
+java:S1659/"GDeclare "inQuantity" and all following declarations on a separate line.(Úí•Àùÿÿÿÿ8ò¸Éé1J$9d65cac1-d294-4a3d-a9c8-db32a27aea74
+¡
+java:S1450*"YRemove the "dataSource" field and declare it as a local variable in the relevant methods.(ÑÍŒ‘ÿÿÿÿÿ8ò¸Éé1J$da3aba25-aacb-4e43-8141-9509a0f6ed23
+š
+java:S37763"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(¨Œşÿÿÿÿ8ü¸Éé1J$ee6e4613-9d1f-40e0-9af6-3ac7fd89c96e
+p	java:S108Q")Either remove or fill this block of code.(±Êæìøÿÿÿÿ8Œ¸Éé1J$542ec8dc-d132-4011-8882-a2ec16f19d96
+‚
+java:S1117Ï"9Rename "sales" which hides the field declared at line 47.(òÃŠĞùÿÿÿÿ8­¸Éé1J$fadd6cba-9d1b-41af-8e71-89c92e0116df
+v
+java:S1068*".Remove this unused "dataSource" private field.(ÑÍŒ‘ÿÿÿÿÿ8³¸Éé1J$5d7d854c-db2f-4057-b1e1-efc2b9f5b104

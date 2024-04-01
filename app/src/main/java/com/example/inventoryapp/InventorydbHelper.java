@@ -17,6 +17,7 @@ public class InventorydbHelper extends SQLiteOpenHelper {
                     InventoryContract.ProductEntry.COLUMN_NAME_PRICE + " INTEGER," +
                     InventoryContract.ProductEntry.COLUMN_NAME_MODEL_NUMBER + " TEXT," +
                     InventoryContract.ProductEntry.COLUMN_NAME_BRAND + " TEXT," +
+                    InventoryContract.ProductEntry.USER_ID + " TEXT," +
                     InventoryContract.ProductEntry.COLUMN_NAME_QUANTITY + " INTEGER)";
 
     private static final String SQL_CREATE_INVOICES_TABLE =
@@ -27,6 +28,7 @@ public class InventorydbHelper extends SQLiteOpenHelper {
                     InventoryContract.InvoiceEntry.COLUMN_NAME_SI + " INTEGER," +
                     InventoryContract.InvoiceEntry.COLUMN_NAME_QUANTITY + " INTEGER," +
                     InventoryContract.InvoiceEntry.COLUMN_NAME_DATE + " TEXT," +
+                    InventoryContract.ProductEntry.USER_ID + " TEXT," +
                     InventoryContract.InvoiceEntry.COLUMN_NAME_ACTIVITY_TYPE + " TEXT)";
 
     private static final String SQL_CREATE_USERS_TABLE =

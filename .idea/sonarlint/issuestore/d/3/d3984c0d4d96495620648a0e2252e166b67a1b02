@@ -1,0 +1,21 @@
+
+d
+java:S1604>"(Make this anonymous inner class a lambda(ÁùÛ¡J$7ae607e8-561b-4f97-a0aa-cc489232bc60
+i
+java:S1604E"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿJ$3af646c3-c376-4b83-991a-93a2c19b27e6
+d
+java:S1604r"(Make this anonymous inner class a lambda(¦«ÑJ$c3dc977f-c362-4e11-be04-2f104c4ca338
+j
+java:S1604‚"(Make this anonymous inner class a lambda(ÕæëüùÿÿÿÿJ$735c7017-49a3-413f-9b2c-32b37bee2804
+j
+java:S1604’"(Make this anonymous inner class a lambda(ÿØ²øÿÿÿÿJ$4399f8c6-1d9d-4dc0-bb22-0fbe9fdde81c
+‡	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¨Ü¸\J$2d72e7b1-1695-4ca3-a5f5-c0e32ad209c1
+„
+java:S1659"HDeclare "productName" and all following declarations on a separate line.(à¦ˆŠJ$7a88f3cc-8267-40e6-8705-c45bd60f6d52
+`
+java:S1659"$Declare "addbtn" on a separate line.(Š»ÁêJ$b05dfdf6-d7c5-4a44-841c-c9cd42d22ca6
+“
+java:S3776'"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(¨ŒşÿÿÿÿJ$502e5c88-a610-4db3-82a9-055fe50d0258
+d	java:S108X")Either remove or fill this block of code.(íŒéJ$8ee4183a-f16e-43cd-aa4e-5c463f920ef6
+l	java:S106Á"+Replace this use of System.out by a logger.(¡‘ªùÿÿÿÿJ$e540d87a-837b-438c-a110-d33d20b66e7f
+l	java:S106Ã"+Replace this use of System.out by a logger.(€ü£‹üÿÿÿÿJ$20503157-4810-465d-978b-e5298528e1de

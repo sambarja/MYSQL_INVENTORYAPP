@@ -23,6 +23,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class outbound extends AppCompatActivity {
 
@@ -90,7 +91,7 @@ public class outbound extends AppCompatActivity {
 
                 }
                 if (itemId == R.id.nav_analytics){
-                    startActivity(new Intent(outbound.this, Analytics.class));
+                    startActivity(new Intent(outbound.this, analytics.class));
 
                 }
                 if (itemId == R.id.logout){
@@ -174,6 +175,9 @@ public class outbound extends AppCompatActivity {
                     si.setText("");
                     client.setText("");
                     quantity.setText("0");
+                    InventoryDataSource dataSource = new InventoryDataSource(outbound.this);
+                    List<product> productList = dataSource.fetchDataFromDatabase();
+                    InventoryChecker.checkInventoryAndNotify(productList, outbound.this);
                 } else {
                     // Display error message if model number doesn't exist
                     Toast.makeText(getApplicationContext(), "Model number does not exist", Toast.LENGTH_SHORT).show();

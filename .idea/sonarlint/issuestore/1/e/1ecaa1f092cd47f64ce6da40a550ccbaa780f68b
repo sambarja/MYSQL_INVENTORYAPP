@@ -1,0 +1,6 @@
+
+
+java:S1104"VMake monthNames a static final constant or non-public and provide accessors if needed.(Óæûäıÿÿÿÿ8•ï§é1J$32c8d497-be2f-40cb-a5f9-59ab90e9f5e9
+	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(£×©¯8•ï§é1J$c4823ffe-ba48-4770-bda8-c2ebe69e50de
+w
+java:S1172("/Remove this unused method parameter "listener".(Ğïÿâşÿÿÿÿ8°•ï§é1J$071a670d-3b0d-4a8c-a29b-a37baf04e541
