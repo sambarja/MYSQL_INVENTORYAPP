@@ -1,21 +1,21 @@
 
 d
-java:S1604>"(Make this anonymous inner class a lambda(ÁùÛ¡J$7ae607e8-561b-4f97-a0aa-cc489232bc60
+java:S1604G"(Make this anonymous inner class a lambda(ÁùÛ¡J$ac1eef07-1cbb-4628-b4f6-c34c7aa4f7cb
 i
-java:S1604E"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿJ$3af646c3-c376-4b83-991a-93a2c19b27e6
+java:S1604N"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿJ$9394422b-4b29-48f9-80fe-09b074738e51
 d
-java:S1604r"(Make this anonymous inner class a lambda(¦«ÑJ$c3dc977f-c362-4e11-be04-2f104c4ca338
+java:S1604{"(Make this anonymous inner class a lambda(¦«ÑJ$a1467674-51b1-4970-8200-8154c5690791
 j
-java:S1604‚"(Make this anonymous inner class a lambda(ÕæëüùÿÿÿÿJ$735c7017-49a3-413f-9b2c-32b37bee2804
+java:S1604‹"(Make this anonymous inner class a lambda(ÕæëüùÿÿÿÿJ$de3aa0ec-26e3-420e-9699-530f6e238d07
 j
-java:S1604’"(Make this anonymous inner class a lambda(ÿØ²øÿÿÿÿJ$4399f8c6-1d9d-4dc0-bb22-0fbe9fdde81c
-‡	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¨Ü¸\J$2d72e7b1-1695-4ca3-a5f5-c0e32ad209c1
+java:S1604›"(Make this anonymous inner class a lambda(ÿØ²øÿÿÿÿJ$3cc17ee3-f717-4afb-9a2b-52cfdf1079fc
+‡	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¨Ü¸\J$d3bfb41d-0964-4834-a33c-5e25a123f3cf
 „
-java:S1659"HDeclare "productName" and all following declarations on a separate line.(à¦ˆŠJ$7a88f3cc-8267-40e6-8705-c45bd60f6d52
+java:S1659"HDeclare "productName" and all following declarations on a separate line.(à¦ˆŠJ$69f96fbc-df72-42b7-832d-ff9722496c0b
 `
-java:S1659"$Declare "addbtn" on a separate line.(Š»ÁêJ$b05dfdf6-d7c5-4a44-841c-c9cd42d22ca6
+java:S1659 "$Declare "addbtn" on a separate line.(Š»ÁêJ$07aaf27a-af52-4258-b70f-00ceb7c1d127
 “
-java:S3776'"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(¨ŒşÿÿÿÿJ$502e5c88-a610-4db3-82a9-055fe50d0258
-d	java:S108X")Either remove or fill this block of code.(íŒéJ$8ee4183a-f16e-43cd-aa4e-5c463f920ef6
-l	java:S106Á"+Replace this use of System.out by a logger.(¡‘ªùÿÿÿÿJ$e540d87a-837b-438c-a110-d33d20b66e7f
-l	java:S106Ã"+Replace this use of System.out by a logger.(€ü£‹üÿÿÿÿJ$20503157-4810-465d-978b-e5298528e1de
+java:S3776("RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(¨ŒşÿÿÿÿJ$a4d27540-9b0e-4a45-b2c7-f84466831800
+d	java:S108a")Either remove or fill this block of code.(íŒéJ$fe6f871b-95f9-479d-a156-c0435fc97f1c
+l	java:S106Ê"+Replace this use of System.out by a logger.(¡‘ªùÿÿÿÿJ$19efda3c-515a-4fb5-8278-a6aecea161c9
+l	java:S106Ì"+Replace this use of System.out by a logger.(€ü£‹üÿÿÿÿJ$8415b930-1970-43f0-a89f-5c67774884a6

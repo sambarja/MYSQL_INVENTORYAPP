@@ -1,11 +1,11 @@
 
->
-java:S16041"(Make this anonymous inner class a lambda(ÁùÛ¡
-C
-java:S16048"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿ
->
-java:S1604a"(Make this anonymous inner class a lambda(ÉË¢
-g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(½¿ş±ùÿÿÿÿ
-m
-java:S3776""RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(¨Œşÿÿÿÿ
->	java:S108N")Either remove or fill this block of code.(ÛÅ…Ó
+d
+java:S1604:"(Make this anonymous inner class a lambda(ÁùÛ¡J$6a9ab107-edd4-4dd0-a95f-7c325c1a5bbd
+i
+java:S1604A"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿJ$4ae11e4b-033c-43fb-92a1-e44c4b13fdd1
+d
+java:S1604j"(Make this anonymous inner class a lambda(ÉË¢J$b9b2d779-6b9a-4c1b-a2ec-855382b5c566
+	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(½¿ş±ùÿÿÿÿJ$69ca7fce-c059-4bbc-80ab-0bde482cc9d2
+“
+java:S3776#"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(¨ŒşÿÿÿÿJ$24a14420-006f-4725-9183-78707b1b9f74
+d	java:S108W")Either remove or fill this block of code.(ÛÅ…ÓJ$f711c865-559e-4805-8518-332fdc3239f1

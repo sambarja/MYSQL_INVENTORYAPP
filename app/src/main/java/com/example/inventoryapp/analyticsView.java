@@ -62,6 +62,14 @@ public class analyticsView extends AppCompatActivity {
         outQuantity = findViewById(R.id.quantity_out);
         downloadBtn = findViewById(R.id.download_excel_btn);
 
+        View headerView = navigationView.getHeaderView(0);
+        TextView usernameText = headerView.findViewById(R.id.username);
+        TextView nameText = headerView.findViewById(R.id.name);
+
+        User user = SessionData.getInstance().user;
+        usernameText.setText(user.getUsername());
+        nameText.setText(user.getName());
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,18 +1,18 @@
 
 ’
-java:S1192’"IDefine a constant instead of duplicating this literal "invoices" 3 times.(…íÆşüÿÿÿÿ8ıÍè¦é1J$6c7402bb-6f78-4818-879d-8a815c58edad
+java:S1192’"IDefine a constant instead of duplicating this literal "invoices" 3 times.(…íÆşüÿÿÿÿ8ıÍè¦é1J$2040a6bd-1bb4-49df-af68-95cd5c8c211e
 ’
-java:S1192€"IDefine a constant instead of duplicating this literal "products" 3 times.(æ„Ó¯øÿÿÿÿ8¢„Ì¦é1J$61466d96-fe74-4392-95ed-c72d176f31ce
+java:S1192€"IDefine a constant instead of duplicating this literal "products" 3 times.(æ„Ó¯øÿÿÿÿ8¢„Ì¦é1J$e9f8e6dc-e8d7-47b0-80d6-9cdd80c9eb94
 
-java:S1854,"<Remove this useless assignment to local variable "newRowId".(ÁÎš8Ó„Ì¦é1J$dba203c2-cb06-4961-80c9-290a7a077be0
+java:S1854,"<Remove this useless assignment to local variable "newRowId".(ÁÎš8Ó„Ì¦é1J$07919a56-4bdc-4f8b-bc90-15826da4dce7
 p
-java:S1481,"-Remove this unused "newRowId" local variable.(ÁÎš8Ó„Ì¦é1J$808fefa4-1f56-46df-a208-a5eb19bd186f
+java:S1481,"-Remove this unused "newRowId" local variable.(ÁÎš8Ó„Ì¦é1J$b3495706-0b8b-42d0-a883-e0799ece8379
 ~
-java:S18548"<Remove this useless assignment to local variable "newRowId".(ül8Ó„Ì¦é1J$c7c99b81-1990-4730-bca5-9ae265a7e77f
+java:S18548"<Remove this useless assignment to local variable "newRowId".(ül8Ó„Ì¦é1J$c835cb94-cd0f-4613-b3ed-9f8b2b37086c
 o
-java:S14818"-Remove this unused "newRowId" local variable.(ül8Û„Ì¦é1J$2af0a877-2690-4d82-bb62-264fdba16609
-n	java:S106Ó"+Replace this use of System.out by a logger.(êš†Ó8ã„Ì¦é1J$accc4cde-147b-43e2-a7e6-bc1775a97970
-s	java:S106Ö"+Replace this use of System.out by a logger.(Ñ–í–øÿÿÿÿ8ã„Ì¦é1J$44c47ca0-91ba-4e0c-a601-7190652d801b
-l	java:S108°")Either remove or fill this block of code.(å¥‡8ë„Ì¦é1J$2451119d-9067-4b0f-b193-151178cb928d
+java:S14818"-Remove this unused "newRowId" local variable.(ül8Û„Ì¦é1J$5b9c05b6-e233-4640-ab90-4bdfeb62c7d8
+n	java:S106Ó"+Replace this use of System.out by a logger.(êš†Ó8ã„Ì¦é1J$49abb787-40d4-4f4e-9d63-666d3f408fc4
+s	java:S106Ö"+Replace this use of System.out by a logger.(Ñ–í–øÿÿÿÿ8ã„Ì¦é1J$dd0a7c61-af7d-47f3-a0a5-c35586758877
+l	java:S108°")Either remove or fill this block of code.(å¥‡8ë„Ì¦é1J$11a16002-53b9-4183-b91f-702a2ba6cc29
 y
-java:S1128"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8ë„Ì¦é1J$b0b0fc7b-3b0f-4e5e-87ce-9f48300ffb34
+java:S1128"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8ë„Ì¦é1J$fc1ac600-709c-4f92-96ed-7381180382ce

@@ -32,7 +32,7 @@ public class NotificationHelper {
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(NOTIFICATION_ID, builder.build());
+            notificationManager.notify((int) Math.round(Math.random() * 100), builder.build());
         } else {
             requestNotificationPermission(context);
         }
