@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,8 @@ public class addproduct extends AppCompatActivity {
 
     ImageView menu;
 
+    TextView usernameText,nameText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,13 @@ public class addproduct extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_addproduct);
         navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        usernameText = headerView.findViewById(R.id.username);
+        nameText = headerView.findViewById(R.id.name);
+
+        User user = SessionData.getInstance().user;
+        usernameText.setText(user.getUsername());
+        nameText.setText(user.getName());
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override

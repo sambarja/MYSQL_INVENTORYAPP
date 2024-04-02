@@ -63,7 +63,6 @@ public class home extends AppCompatActivity {
         choice4 = findViewById(R.id.choice4);
         choice5 = findViewById(R.id.choice5);
         choice6 = findViewById(R.id.choice6);
-        cardView = findViewById(R.id.cardView);
         menu = findViewById(R.id.menuImage);
 
         menu.setOnClickListener(new View.OnClickListener() {
