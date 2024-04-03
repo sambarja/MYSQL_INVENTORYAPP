@@ -24,6 +24,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class inbound extends AppCompatActivity {
 
@@ -181,6 +182,9 @@ public class inbound extends AppCompatActivity {
                     dataSource.updateInventoryQuantity(modelNumberText, Integer.parseInt(quantityText),"inbound");
 
                     Toast.makeText(getApplicationContext(), "Data added successfully", Toast.LENGTH_SHORT).show();
+                    InventoryDataSource dataSource = new InventoryDataSource(inbound.this);
+                    List<product> productList = dataSource.fetchDataFromDatabase();
+                    InventoryChecker.checkInventoryAndNotify(productList, inbound.this);
                     modelNumber.setText("");
                     si.setText("");
                     client.setText("");

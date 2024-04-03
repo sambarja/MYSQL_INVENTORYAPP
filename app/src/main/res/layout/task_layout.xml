@@ -29,6 +29,7 @@
                     android:layout_marginTop="10dp"
                     android:textSize="25dp"
                     android:layout_gravity="left"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/poppins_medium"
                     android:textStyle="bold"></TextView>
                 <TextView
@@ -37,6 +38,7 @@
                     android:layout_height="25dp"
                     android:layout_marginLeft="10dp"
                     android:text="Model Number"
+                    android:textColor="@color/black"
                     android:layout_gravity="left"
                     android:textSize="20dp"></TextView>
                 <TextView
@@ -45,6 +47,7 @@
                     android:layout_height="22dp"
                     android:layout_marginLeft="10dp"
                     android:text="#of stocks"
+                    android:textColor="@color/black"
                     android:layout_gravity="left"
                     android:textSize="20dp"></TextView>
 

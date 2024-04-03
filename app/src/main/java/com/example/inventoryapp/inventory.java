@@ -65,6 +65,7 @@ public class inventory extends AppCompatActivity implements productAdapter.OnEdi
         nameText.setText(user.getName());
 
         List<product> productList = dataSource.fetchDataFromDatabase();
+        InventoryChecker.checkInventoryAndNotify(productList, this);
 
         updateRecyclerView(productList);
 

@@ -54,6 +54,7 @@
         android:layout_marginTop="68dp"
         android:background="@color/dirty_white"
         android:theme="@style/activate"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"

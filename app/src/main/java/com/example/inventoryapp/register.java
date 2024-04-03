@@ -71,10 +71,18 @@ public class register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please fill All details", Toast.LENGTH_SHORT).show();
                 } else if (!password.equals(conPass)) {
                     Toast.makeText(getApplicationContext(), "Password confirmation is incorrect", Toast.LENGTH_SHORT).show();
+                    edUsername.setText("");
+                    edName.setText("");
+                    edPassword.setText("");
+                    edConPass.setText("");
                 } else {
                     // Check if username already exists
                     if (udb.isUsernameExists(username)) {
                         Toast.makeText(getApplicationContext(), "Username already exists, please choose another one", Toast.LENGTH_SHORT).show();
+                        edUsername.setText("");
+                        edName.setText("");
+                        edPassword.setText("");
+                        edConPass.setText("");
                     } else {
                         // Create a User object
                         User user = new User(username, name, password);
@@ -83,6 +91,10 @@ public class register extends AppCompatActivity {
                         udb.insertUser(user);
                         udb.close();
                         Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+                        edUsername.setText("");
+                        edName.setText("");
+                        edPassword.setText("");
+                        edConPass.setText("");
                         startActivity(new Intent(register.this, MainActivity.class));
 
                     }

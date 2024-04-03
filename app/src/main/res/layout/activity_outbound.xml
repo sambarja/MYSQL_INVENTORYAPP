@@ -50,16 +50,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.643">
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="left"
-            android:text="Model Number"
-            android:textColor="@color/black"
-            android:textSize="18dp" >
-        </TextView>
 
         <EditText
             android:id="@+id/editTextModelNumber"
@@ -70,18 +60,6 @@
             android:textSize="19dp"
             android:theme="@style/activate" >
         </EditText>
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="left"
-            android:text="#SI"
-            android:textColor="@color/black"
-            android:textSize="18dp" >
-        </TextView>
-
         <EditText
             android:id="@+id/editTextSi"
             android:hint="#Si"
@@ -93,16 +71,6 @@
             android:theme="@style/activate" >
         </EditText>
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="left"
-            android:text="Client"
-            android:textColor="@color/black"
-            android:textSize="18dp" >
-        </TextView>
 
         <EditText
             android:hint="Client"
@@ -126,6 +94,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
+                android:backgroundTint="@color/white">
                 android:background="@color/white">
 
                 <ImageView
@@ -152,6 +121,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
+                android:backgroundTint="@color/white">
                 android:background="@color/white">
 
                 <ImageView

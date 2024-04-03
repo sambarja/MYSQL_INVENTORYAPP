@@ -69,13 +69,6 @@ public class addproduct extends AppCompatActivity {
         usernameText.setText(user.getUsername());
         nameText.setText(user.getName());
 
-        View headerView = navigationView.getHeaderView(0);
-        TextView usernameText = headerView.findViewById(R.id.username);
-        TextView nameText = headerView.findViewById(R.id.name);
-
-        User user = SessionData.getInstance().user;
-        usernameText.setText(user.getUsername());
-        nameText.setText(user.getName());
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,21 +193,15 @@ public class addproduct extends AppCompatActivity {
                     dataSource.addProduct(newProduct);
 
                     Toast.makeText(getApplicationContext(), "Product added successfully", Toast.LENGTH_SHORT).show();
+                    InventoryDataSource dataSource = new InventoryDataSource(addproduct.this);
+                    List<product> productList = dataSource.fetchDataFromDatabase();
+                    InventoryChecker.checkInventoryAndNotify(productList, addproduct.this);
                     modelNumber.setText("");
                     productName.setText("");
                     si.setText("");
                     brand.setText("");
                     price.setText("");
                     quantity.setText("0");
-
-                    List<product> productList = lol.fetchDataFromDatabase();
-                    System.out.println("Inventory:");
-                    for (product product : productList) {
-                        System.out.println("Product Name: " + product.getProductName() +
-                                ", Model Number: " + product.getModelNumber() +
-                                ", Quantity: " + product.getQuantity() +
-                                ", Price: " + product.getPrice());
-                    }
                 }
             }
         });

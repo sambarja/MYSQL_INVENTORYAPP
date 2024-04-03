@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -42,8 +42,6 @@ public class analytics extends AppCompatActivity implements productAdapter.OnEdi
 
     NavigationView navigationView;
 
-    TextView usernameText,nameText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,13 +58,6 @@ public class analytics extends AppCompatActivity implements productAdapter.OnEdi
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer_inventory);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        View headerView = navigationView.getHeaderView(0);
-        usernameText = headerView.findViewById(R.id.username);
-        nameText = headerView.findViewById(R.id.name);
-
-        User user = SessionData.getInstance().user;
-        usernameText.setText(user.getUsername());
-        nameText.setText(user.getName());
 
         View headerView = navigationView.getHeaderView(0);
         TextView usernameText = headerView.findViewById(R.id.username);
@@ -183,5 +174,3 @@ public class analytics extends AppCompatActivity implements productAdapter.OnEdi
 
 
 }
-
-

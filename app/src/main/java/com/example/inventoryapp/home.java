@@ -28,10 +28,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.view.GravityCompat;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class home extends AppCompatActivity {
 
-    CardView choice1, choice2, choice3, choice4, choice5, choice6, cardView;
+    CardView choice1, choice2, choice3, choice4, choice5, choice6;
     ImageView menu;
 
     NavigationView navigationView;
@@ -65,6 +66,7 @@ public class home extends AppCompatActivity {
         choice6 = findViewById(R.id.choice6);
         menu = findViewById(R.id.menuImage);
 
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,35 +79,35 @@ public class home extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int itemId = menuItem.getItemId();
 
-                if (itemId == R.id.nav_home){
+                if (itemId == R.id.nav_home) {
 
 
                 }
-                if (itemId == R.id.nav_inventory){
+                if (itemId == R.id.nav_inventory) {
                     startActivity(new Intent(home.this, inventory.class));
 
                 }
-                if (itemId == R.id.nav_inbound){
+                if (itemId == R.id.nav_inbound) {
                     startActivity(new Intent(home.this, inbound.class));
 
                 }
-                if (itemId == R.id.nav_outbound){
+                if (itemId == R.id.nav_outbound) {
                     startActivity(new Intent(home.this, outbound.class));
 
                 }
-                if (itemId == R.id.nav_add){
+                if (itemId == R.id.nav_add) {
                     startActivity(new Intent(home.this, addproduct.class));
 
                 }
-                if (itemId == R.id.nav_delete){
+                if (itemId == R.id.nav_delete) {
                     startActivity(new Intent(home.this, deleteproduct.class));
 
                 }
-                if (itemId == R.id.nav_analytics){
+                if (itemId == R.id.nav_analytics) {
                     startActivity(new Intent(home.this, analytics.class));
 
                 }
-                if (itemId == R.id.logout){
+                if (itemId == R.id.logout) {
                     logout.logout(home.this);
 
                 }
@@ -115,8 +117,6 @@ public class home extends AppCompatActivity {
                 return false;
             }
         });
-
-
 
 
         choice1.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +154,7 @@ public class home extends AppCompatActivity {
         choice5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(home.this,deleteproduct.class));
+                startActivity(new Intent(home.this, deleteproduct.class));
             }
 
         });
@@ -167,19 +167,7 @@ public class home extends AppCompatActivity {
 
         });
 
-
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(home.this, analytics.class));
-            }
-
-        });
-
-        NotificationHelper.requestNotificationPermission(home.this);
-        scheduleTask();
     }
-
     private void scheduleTask() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(getApplicationContext(), InventoryBroadcast.class);
