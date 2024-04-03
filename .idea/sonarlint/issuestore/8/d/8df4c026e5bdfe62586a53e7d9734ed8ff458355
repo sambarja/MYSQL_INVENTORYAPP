@@ -1,14 +1,14 @@
 
-˜	java:S1178"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰¤óçıÿÿÿÿ8©ã¦…é1J$ac5f969b-9d42-43a1-8327-4a3ace60f1e7
+˜	java:S1178"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰¤óçıÿÿÿÿ8©ã¦…é1J$b57eff48-532a-4b9e-9e1d-fc375b0a2167
 p
-java:S1604""(Make this anonymous inner class a lambda(œ§›†ıÿÿÿÿ8«ã¦…é1J$8378336a-3cfa-4da6-bd4d-f3aefef9bf42
+java:S1604""(Make this anonymous inner class a lambda(œ§›†ıÿÿÿÿ8«ã¦…é1J$fceeaf65-314a-4b66-9c6f-5c4ffb49b629
 k
-java:S1604A"(Make this anonymous inner class a lambda(á‡¤Å8«ã¦…é1J$294c7bd0-a7fc-48b8-8f47-c6d041536891
+java:S1604A"(Make this anonymous inner class a lambda(á‡¤Å8«ã¦…é1J$fe692d6d-5b5e-47b1-a6ee-2ec24f50bf6e
 p
-java:S1604H"(Make this anonymous inner class a lambda(ƒø…Òÿÿÿÿÿ8«ã¦…é1J$1968bcb7-65ba-4abc-8b17-0812d59ad7a6
+java:S1604H"(Make this anonymous inner class a lambda(ƒø…Òÿÿÿÿÿ8«ã¦…é1J$0ed06ac2-a020-4507-a905-a2dce298982f
 †
-java:S2259|"DA "NullPointerException" could be thrown; "cursor" is nullable here.(´şU8êã¦…é1J$e8c781e9-9071-4666-9862-c07c2317bdc0
-D
-java:S1659"(Declare "edPassword" on a separate line.(ô øh8Ø§…é1
-]
-java:S3252h"@Use static access with "android.provider.BaseColumns" for "_ID".(º½Àæ8ø§…é1
+java:S2259|"DA "NullPointerException" could be thrown; "cursor" is nullable here.(´şU8êã¦…é1J$3dfb1e48-72f9-4529-abcf-6833e83b06cc
+j
+java:S1659"(Declare "edPassword" on a separate line.(ô øh8Ø§…é1J$5908f2ec-02fa-4a8d-b0cc-7242a220594a
+ƒ
+java:S3252h"@Use static access with "android.provider.BaseColumns" for "_ID".(º½Àæ8ø§…é1J$c19deb33-0372-4b6f-a56e-1d78a212896c

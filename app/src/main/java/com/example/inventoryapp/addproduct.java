@@ -69,6 +69,14 @@ public class addproduct extends AppCompatActivity {
         usernameText.setText(user.getUsername());
         nameText.setText(user.getName());
 
+        View headerView = navigationView.getHeaderView(0);
+        TextView usernameText = headerView.findViewById(R.id.username);
+        TextView nameText = headerView.findViewById(R.id.name);
+
+        User user = SessionData.getInstance().user;
+        usernameText.setText(user.getUsername());
+        nameText.setText(user.getName());
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

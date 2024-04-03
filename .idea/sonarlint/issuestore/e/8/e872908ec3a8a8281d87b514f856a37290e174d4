@@ -1,19 +1,19 @@
 
 d
-java:S1604="(Make this anonymous inner class a lambda(ÁùÛ¡J$302c45a9-649d-4d43-bc25-0ea4b800fd41
+java:S1604F"(Make this anonymous inner class a lambda(ÁùÛ¡J$9fa618bd-a198-4204-beca-b91dcbc00059
 i
-java:S1604D"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿJ$2d2a7a50-3f20-459e-a4c4-3928d2e0f208
+java:S1604M"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿJ$53206dee-48d2-48a0-b5f2-64e34b4deb06
 i
-java:S1604q"(Make this anonymous inner class a lambda(ÿØ²øÿÿÿÿJ$d966ba05-6df0-4a7b-a81c-030eb618a896
+java:S1604z"(Make this anonymous inner class a lambda(ÿØ²øÿÿÿÿJ$7a159d64-0b55-457c-b949-f3ea345eb083
 d
-java:S1604‚"(Make this anonymous inner class a lambda(øá‡bJ$54442c7e-bf3f-49ee-bb79-ddc2e88ff94a
+java:S1604‹"(Make this anonymous inner class a lambda(øá‡bJ$3f21ba1d-8ab5-43a0-9ac0-3762adaefe03
 e
-java:S1604“"(Make this anonymous inner class a lambda(éê…¬J$435f9010-a0e1-42fd-b33e-da957d4a07a6
-ˆ	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Ìµ¿ÆJ$675eb485-98e5-4703-8c15-c9d96022e176
+java:S1604œ"(Make this anonymous inner class a lambda(éê…¬J$2751ce58-12c0-4320-99f6-e486cce5fccf
+ˆ	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Ìµ¿ÆJ$ec04d24c-638d-45c6-849a-bb2d02ba3882
 €
-java:S1659"?Declare "si" and all following declarations on a separate line.(–é©‚üÿÿÿÿJ$17f3c429-8f3d-4d2b-9a9c-0bac228ef876
+java:S1659"?Declare "si" and all following declarations on a separate line.(–é©‚üÿÿÿÿJ$4fe4e5e9-c3bf-4a87-a1ce-5506c97299d7
 g
-java:S1659 "&Declare "subtract" on a separate line.(ë³¦£üÿÿÿÿJ$dc0b86d9-e01a-4e09-b456-411fb6f20362
+java:S1659!"&Declare "subtract" on a separate line.(ë³¦£üÿÿÿÿJ$b2386c39-2d69-4b4f-bdc4-fd83ae569f56
 “
-java:S3776*"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(¨ŒşÿÿÿÿJ$13784c29-7bd2-4ff2-b0c6-3c517a8cf95f
-i	java:S108P")Either remove or fill this block of code.(®§­ÂÿÿÿÿÿJ$fd276fee-9072-4633-802f-e1a822fd8a58
+java:S3776+"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(¨ŒşÿÿÿÿJ$72787be4-bdc1-406a-90d6-23fef99b3693
+i	java:S108Y")Either remove or fill this block of code.(®§­ÂÿÿÿÿÿJ$53f8d6e7-55c6-4120-9cb3-ee3c08436827

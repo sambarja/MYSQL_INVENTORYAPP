@@ -20,6 +20,7 @@ import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView;
 import java.util.ArrayList;
@@ -54,6 +55,14 @@ public class inventory extends AppCompatActivity implements productAdapter.OnEdi
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer_inventory);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView usernameText = headerView.findViewById(R.id.username);
+        TextView nameText = headerView.findViewById(R.id.name);
+
+        User user = SessionData.getInstance().user;
+        usernameText.setText(user.getUsername());
+        nameText.setText(user.getName());
 
         List<product> productList = dataSource.fetchDataFromDatabase();
 

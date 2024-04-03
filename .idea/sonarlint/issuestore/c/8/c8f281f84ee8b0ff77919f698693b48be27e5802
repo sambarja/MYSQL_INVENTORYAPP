@@ -1,15 +1,15 @@
 
 d
-java:S1604A"(Make this anonymous inner class a lambda(ñÏ¾äJ$57796976-be1c-45cf-ae43-c9048deef347
+java:S1604J"(Make this anonymous inner class a lambda(ñÏ¾äJ$73313949-5550-49ed-99e0-9cbb739b6b20
 d
-java:S1604U"(Make this anonymous inner class a lambda(ÁùÛ¡J$90a2d330-ff4c-4880-9bf9-72ebfc936f28
+java:S1604^"(Make this anonymous inner class a lambda(ÁùÛ¡J$5b145365-afba-4954-a7ab-3e5cf56f264e
 i
-java:S1604\"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿJ$05c7170c-e57d-4a14-bc00-d85e517a5cca
-ˆ	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(æ‹ºJ$ed6bc499-c2e2-4733-842d-a237eba4a28b
+java:S1604e"(Make this anonymous inner class a lambda(é°¤üÿÿÿÿJ$29cffbe6-1378-42c3-bb44-a49e4f66115b
+ˆ	java:S101 "MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(æ‹ºJ$f9e0b12d-fecc-4e34-894a-8da7ce96a3a3
 “
-java:S3776,"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¨ŒşÿÿÿÿJ$1fa1b712-2726-46cc-89b4-890a5eba42e6
+java:S3776-"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¨ŒşÿÿÿÿJ$14f549dc-27db-4103-9024-8a49f317372b
 z
-java:S1117?">Rename "searchView" which hides the field declared at line 36.(åßĞJ$ea9efd25-19bd-4c6d-ad6e-56939a4b8bf6
-i	java:S108e")Either remove or fill this block of code.(±ÊæìøÿÿÿÿJ$f6b56e70-7c51-4290-92e3-1ad484683183
-g	java:S106"+Replace this use of System.out by a logger.(À¾ÒJ$9933636a-30eb-476e-b9a0-1705679a1d56
-l	java:S106Ÿ"+Replace this use of System.out by a logger.(€ü£‹üÿÿÿÿJ$fdb257a3-e91f-4e56-86b3-7615ecdcc999
+java:S1117H">Rename "searchView" which hides the field declared at line 37.(åßĞJ$70185975-f505-4d0b-94d8-0385d2cfb2be
+i	java:S108n")Either remove or fill this block of code.(±ÊæìøÿÿÿÿJ$6d5885e6-dd6b-493a-af0b-5a9eb2fbed21
+g	java:S106¦"+Replace this use of System.out by a logger.(À¾ÒJ$edb9f2f1-3157-4107-8811-bcfe5aa08418
+l	java:S106¨"+Replace this use of System.out by a logger.(€ü£‹üÿÿÿÿJ$6e1417b2-e00d-4500-93bd-2c3bb1c5d00c

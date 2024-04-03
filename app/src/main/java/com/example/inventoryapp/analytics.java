@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,12 +55,22 @@ public class analytics extends AppCompatActivity implements productAdapter.OnEdi
         searchView = findViewById(R.id.searchView);
         menu = findViewById(R.id.menuImage);
 
+
+
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer_inventory);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         View headerView = navigationView.getHeaderView(0);
         usernameText = headerView.findViewById(R.id.username);
         nameText = headerView.findViewById(R.id.name);
+
+        User user = SessionData.getInstance().user;
+        usernameText.setText(user.getUsername());
+        nameText.setText(user.getName());
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView usernameText = headerView.findViewById(R.id.username);
+        TextView nameText = headerView.findViewById(R.id.name);
 
         User user = SessionData.getInstance().user;
         usernameText.setText(user.getUsername());
