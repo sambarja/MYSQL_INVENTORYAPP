@@ -3,46 +3,36 @@ package com.example.inventoryapp;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.core.view.GravityCompat;
 
 import java.util.Calendar;
-import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class home extends AppCompatActivity {
 
     CardView choice1, choice2, choice3, choice4, choice5, choice6;
     ImageView menu;
-
     NavigationView navigationView;
-
-    TextView usernameText,nameText;
-
-
+    TextView usernameText, nameText;
     DrawerLayout drawerLayout;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +44,14 @@ public class home extends AppCompatActivity {
         usernameText = headerView.findViewById(R.id.username);
         nameText = headerView.findViewById(R.id.name);
 
-        User user = SessionData.getInstance().user;
-        usernameText.setText(user.getUsername());
-        nameText.setText(user.getName());
 
+
+        // Fetch user data from API
+        fetchUserData();
+
+
+
+        // Handle menu choices
         choice1 = findViewById(R.id.choice1);
         choice2 = findViewById(R.id.choice2);
         choice3 = findViewById(R.id.choice3);
@@ -66,108 +60,86 @@ public class home extends AppCompatActivity {
         choice6 = findViewById(R.id.choice6);
         menu = findViewById(R.id.menuImage);
 
-
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawerLayout.open();
-            }
-        });
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int itemId = menuItem.getItemId();
-
-                if (itemId == R.id.nav_home) {
+        menu.setOnClickListener(view -> drawerLayout.open());
 
 
-                }
-                if (itemId == R.id.nav_inventory) {
-                    startActivity(new Intent(home.this, inventory.class));
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            int itemId = menuItem.getItemId();
 
-                }
-                if (itemId == R.id.nav_inbound) {
-                    startActivity(new Intent(home.this, inbound.class));
-
-                }
-                if (itemId == R.id.nav_outbound) {
-                    startActivity(new Intent(home.this, outbound.class));
-
-                }
-                if (itemId == R.id.nav_add) {
-                    startActivity(new Intent(home.this, addproduct.class));
-
-                }
-                if (itemId == R.id.nav_delete) {
-                    startActivity(new Intent(home.this, deleteproduct.class));
-
-                }
-                if (itemId == R.id.nav_analytics) {
-                    startActivity(new Intent(home.this, analytics.class));
-
-                }
-                if (itemId == R.id.logout) {
-                    logout.logout(home.this);
-
-                }
-
-                drawerLayout.close();
-
-                return false;
-            }
-        });
-
-
-        choice1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            if (itemId == R.id.nav_home) {
+                // Handle home action
+            } else if (itemId == R.id.nav_inventory) {
                 startActivity(new Intent(home.this, inventory.class));
-            }
-
-        });
-        choice2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+            } else if (itemId == R.id.nav_inbound) {
                 startActivity(new Intent(home.this, inbound.class));
-            }
-
-        });
-
-        choice3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            } else if (itemId == R.id.nav_outbound) {
                 startActivity(new Intent(home.this, outbound.class));
-            }
-
-        });
-
-        choice4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            } else if (itemId == R.id.nav_add) {
                 startActivity(new Intent(home.this, addproduct.class));
-            }
-
-        });
-
-        choice5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            } else if (itemId == R.id.nav_delete) {
                 startActivity(new Intent(home.this, deleteproduct.class));
-            }
-
-        });
-
-        choice6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            } else if (itemId == R.id.nav_analytics) {
                 startActivity(new Intent(home.this, analytics.class));
+            } else if (itemId == R.id.logout) {
+                logout.logout(home.this);
             }
 
+            drawerLayout.close();
+            return true;
         });
 
+        // Menu choice click listeners
+        choice1.setOnClickListener(view -> startActivity(new Intent(home.this, inventory.class)));
+        choice2.setOnClickListener(view -> startActivity(new Intent(home.this, inbound.class)));
+        choice3.setOnClickListener(view -> startActivity(new Intent(home.this, outbound.class)));
+        choice4.setOnClickListener(view -> startActivity(new Intent(home.this, addproduct.class)));
+        choice5.setOnClickListener(view -> startActivity(new Intent(home.this, deleteproduct.class)));
+        choice6.setOnClickListener(view -> startActivity(new Intent(home.this, analytics.class)));
     }
+
+    // Fetch user data from the API using RetrofitClient
+    private String getLoggedInUsername() {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "");
+        Log.d("HomeActivity", "Retrieved username: " + username); // Log for debugging
+        return username;
+    }
+
+    private void fetchUserData() {
+        String username = getLoggedInUsername(); // Get the logged-in username
+
+        if (username.isEmpty()) {
+            Toast.makeText(home.this, "No user logged in", Toast.LENGTH_SHORT).show();
+            return; // Exit if no username is found
+        }
+
+        Api apiService = RetrofitClient.getInstance(getApplicationContext()).getApi();
+        Call<UserResponse> call = apiService.getUserByUsername(username); // Pass the username here
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UserResponse.User user = response.body().getUser();
+                    // Update UI with user data
+                    usernameText.setText(user.getUsername());
+                    nameText.setText(user.getName());
+                    Log.d("HomeActivity", "Retrieved username: " + user.getUsername());
+                    Log.d("HomeActivity", "Retrieved name: " + user.getName());
+
+                } else {
+                    Toast.makeText(home.this, "Failed to load user data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Log.e("HomeActivity", "Error fetching user data: " + t.getMessage());
+                Toast.makeText(home.this, "Error fetching user data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Schedule task (unchanged)
     private void scheduleTask() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(getApplicationContext(), InventoryBroadcast.class);
@@ -185,6 +157,4 @@ public class home extends AppCompatActivity {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         Toast.makeText(this, "Daily Monitoring initiated", Toast.LENGTH_SHORT).show();
     }
-
-
 }

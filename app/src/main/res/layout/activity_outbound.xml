@@ -72,17 +72,6 @@
         </EditText>
 
 
-        <EditText
-            android:hint="Client"
-            android:id="@+id/editTextClient"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="30dp"
-            android:shadowColor="@color/dark_red"
-            android:textSize="18dp"
-            android:theme="@style/activate" >
-        </EditText>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
