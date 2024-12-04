@@ -98,9 +98,9 @@ public class inventory extends AppCompatActivity implements productAdapter.OnEdi
             if (itemId == R.id.nav_home) {
                 startActivity(new Intent(inventory.this, home.class));
             } else if (itemId == R.id.nav_inventory) {
-                startActivity(new Intent(inventory.this, inventory.class));
+
             } else if (itemId == R.id.nav_inbound) {
-                // Already in the inbound activity
+                startActivity(new Intent(inventory.this, inbound.class));
             } else if (itemId == R.id.nav_outbound) {
                 startActivity(new Intent(inventory.this, outbound.class));
             } else if (itemId == R.id.nav_add) {

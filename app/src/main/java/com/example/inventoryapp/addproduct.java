@@ -98,7 +98,7 @@ public class addproduct extends AppCompatActivity {
                 startActivity(new Intent(addproduct.this, analytics.class));
             }
             if (itemId == R.id.logout) {
-                startActivity(new Intent(addproduct.this, logout.class));
+                logout.logout(addproduct.this);
             }
 
             drawerLayout.close();
@@ -140,10 +140,21 @@ public class addproduct extends AppCompatActivity {
             String priceText = price.getText().toString();
             String brandText = brand.getText().toString();
 
+
+
             if (modelNumberText.isEmpty() || quantityText.isEmpty() || siText.isEmpty() || nameString.isEmpty() || priceText.isEmpty() || brandText.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Please enter all details", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            double parsedPrice;
+            try {
+                parsedPrice = Double.parseDouble(priceText);
+            } catch (NumberFormatException e) {
+                Toast.makeText(getApplicationContext(), "Invalid price format", Toast.LENGTH_SHORT).show();
+                return; // Handle the error and prevent further execution
+            }
+
 
             // Check if the model number already exists
             checkModelNumberExists(modelNumberText, userId, exists -> {
@@ -151,7 +162,7 @@ public class addproduct extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Product Already Exists", Toast.LENGTH_SHORT).show();
                     clearFields();
                 } else {
-                    addProductToDatabase(modelNumberText, nameString, priceText, brandText, quantityText, siText);
+                    addProductToDatabase(modelNumberText, nameString, parsedPrice, brandText, quantityText, siText);
                 }
             });
         });
@@ -185,14 +196,14 @@ public class addproduct extends AppCompatActivity {
         });
     }
 
-    private void addProductToDatabase(String modelNumber, String productName, String price, String brand, String quantity, String si) {
+    private void addProductToDatabase(String modelNumber, String productName, double price, String brand, String quantity, String si) {
         Api apiService = RetrofitClient.getInstance(getApplicationContext()).getApi();
         Call<DefaultResponse> call = apiService.createProduct(
                 productName,
-                Double.parseDouble(price),
+                price,
                 modelNumber,
                 brand,
-                Integer.parseInt(quantity),
+                Integer.parseInt("0"),
                 userId
         );
 
@@ -250,7 +261,9 @@ public class addproduct extends AppCompatActivity {
             public void onFailure(Call<DefaultResponse> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Failed to create invoice", Toast.LENGTH_SHORT).show();
             }
+
         });
+        clearFields();
     }
 
     private void clearFields() {

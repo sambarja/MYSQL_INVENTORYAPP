@@ -75,7 +75,24 @@ public class analytics extends AppCompatActivity implements productAdapter.OnEdi
         menu.setOnClickListener(view -> drawerLayout.open());
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
-            handleNavigation(menuItem.getItemId());
+            int itemId = menuItem.getItemId();
+            if (itemId == R.id.nav_home) {
+                startActivity(new Intent(analytics.this, home.class));
+            } else if (itemId == R.id.nav_inventory) {
+                startActivity(new Intent(analytics.this, inventory.class));
+            } else if (itemId == R.id.nav_inbound) {
+                startActivity(new Intent(analytics.this, inbound.class));
+            } else if (itemId == R.id.nav_outbound) {
+                startActivity(new Intent(analytics.this, outbound.class));
+            } else if (itemId == R.id.nav_add) {
+                startActivity(new Intent(analytics.this, addproduct.class));
+            } else if (itemId == R.id.nav_delete) {
+                startActivity(new Intent(analytics.this, deleteproduct.class));
+            } else if (itemId == R.id.nav_analytics) {
+
+            } else if (itemId == R.id.logout) {
+                logout.logout(analytics.this);
+            }
             drawerLayout.close();
             return false;
         });

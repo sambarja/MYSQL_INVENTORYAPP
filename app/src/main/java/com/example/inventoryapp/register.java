@@ -11,6 +11,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,15 +63,27 @@ public class register extends AppCompatActivity {
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                if (response.isSuccessful() && response.body() != null && response.body().getUser() != null) {
-                    // Username already exists
-                    Toast.makeText(getApplicationContext(), "Username already exists, please choose another one", Toast.LENGTH_SHORT).show();
-                    clearFields();
+                if (response.isSuccessful() && response.body() != null) {
+                    UserResponse userResponse = response.body();
+                    Log.d("Register", "Response Body: " + new Gson().toJson(userResponse));
+
+
+                    if (userResponse.getUser() != null) {
+                        Log.d("Register", "User exists: " + userResponse.getUser().getUsername());
+                        Toast.makeText(getApplicationContext(), "Username already exists, please choose another one", Toast.LENGTH_SHORT).show();
+                        clearFields();
+                    } else {
+                        Log.d("Register", "User does not exist, proceed with creation");
+                        createUser(username, password, name);
+                    }
                 } else {
-                    // Proceed to create the user
-                    createUser(username, password,name);
+                    Log.e("Register", "Error: " + response.code() + " - " + response.message());
+                    Toast.makeText(getApplicationContext(), "Failed to check username", Toast.LENGTH_SHORT).show();
                 }
             }
+
+
+
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
@@ -89,17 +103,16 @@ public class register extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     DefaultResponse responseBody = response.body();
                     Log.d("Register", "Response: " + responseBody);
-                    if ("success".equals(responseBody.getStatus())) {
-                        // Handle success
-                    } else {
+
                         // Log the actual reason for failure
                         Log.e("Register", "Error: " + responseBody.getMessage());
-                        Toast.makeText(getApplicationContext(), "User creation failed: " + responseBody.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                        Toast.makeText(getApplicationContext(), responseBody.getMessage(), Toast.LENGTH_SHORT).show();
+
                 } else {
                     Log.e("Register", "Error: " + response.code() + " - " + response.message());
                     Toast.makeText(getApplicationContext(), "Failed to create user", Toast.LENGTH_SHORT).show();
                 }
+                clearFields();
             }
 
 

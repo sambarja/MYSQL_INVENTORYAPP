@@ -108,15 +108,15 @@
         android:id="@+id/textView"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="144dp"
         android:fontFamily="@font/poppins_extrabold"
-        android:text="Summary"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="@id/menuImage"
         app:layout_constraintTop_toTopOf="parent"></TextView>
 
     <androidx.cardview.widget.CardView
@@ -133,14 +133,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/white">
+            android:backgroundTint="@color/white"
+            >
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Total Sales (outbound)"
                 android:textStyle="bold"
@@ -176,10 +177,11 @@
         android:id="@+id/download_excel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="Download Excel"
+        android:layout_marginTop="148dp"
         android:fontFamily="@font/poppins_medium"
+        android:text="Download Excel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 

@@ -171,6 +171,8 @@ public class analyticsView extends AppCompatActivity {
         int outboundQuantity = 0;
         final double[] totalSales = {0};  // Use a simple variable for total sales instead of an array
 
+        sales.setText(String.valueOf(totalSales[0]));
+
         Log.d("Analytics", "Starting to update views with " + invoices.size() + " invoices");
 
         for (InvoiceResponse.Invoice invoice : invoices) {

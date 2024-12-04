@@ -1,5 +1,7 @@
 package com.example.inventoryapp;
 
+import com.google.gson.annotations.SerializedName;
+
 public class UserResponse {
 
     private boolean error;
@@ -40,6 +42,8 @@ public class UserResponse {
 
     // Inner User class
     public static class User {
+
+        @SerializedName("username")
         private String username;
         private String name;
         private int id;  // Add an ID field
