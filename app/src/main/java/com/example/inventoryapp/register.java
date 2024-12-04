@@ -1,10 +1,8 @@
 package com.example.inventoryapp;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
@@ -12,31 +10,21 @@ import android.widget.Toast;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.OnApplyWindowInsetsListener;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class register extends AppCompatActivity {
 
     EditText edUsername, edName, edPassword, edConPass;
     Button register;
-
     ImageView back;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-
-        userDataSource udb = new userDataSource(this);
 
         edUsername = findViewById(R.id.userid);
         edPassword = findViewById(R.id.password);
@@ -45,64 +33,88 @@ public class register extends AppCompatActivity {
         register = findViewById(R.id.registerbtn);
         back = findViewById(R.id.back);
 
+        back.setOnClickListener(v -> startActivity(new Intent(register.this, MainActivity.class)));
 
+        register.setOnClickListener(view -> {
+            String username = edUsername.getText().toString();
+            String name = edName.getText().toString();
+            String password = edPassword.getText().toString();
+            String conPass = edConPass.getText().toString();
 
-
-
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(register.this, MainActivity.class));
+            if (username.isEmpty() || password.isEmpty() || name.isEmpty() || conPass.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Please fill all details", Toast.LENGTH_SHORT).show();
+            } else if (!password.equals(conPass)) {
+                Toast.makeText(getApplicationContext(), "Password confirmation is incorrect", Toast.LENGTH_SHORT).show();
+                clearFields();
+            } else {
+                // Check if username already exists via the API
+                checkUsernameExists(username, name, password);
             }
         });
-
-
-
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String username = edUsername.getText().toString();
-                String name = edName.getText().toString();
-                String password = edPassword.getText().toString();
-                String conPass = edConPass.getText().toString();
-
-                if (username.length() == 0 || password.length() == 0 || name.length() == 0 || conPass.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "Please fill All details", Toast.LENGTH_SHORT).show();
-                } else if (!password.equals(conPass)) {
-                    Toast.makeText(getApplicationContext(), "Password confirmation is incorrect", Toast.LENGTH_SHORT).show();
-                    edUsername.setText("");
-                    edName.setText("");
-                    edPassword.setText("");
-                    edConPass.setText("");
-                } else {
-                    // Check if username already exists
-                    if (udb.isUsernameExists(username)) {
-                        Toast.makeText(getApplicationContext(), "Username already exists, please choose another one", Toast.LENGTH_SHORT).show();
-                        edUsername.setText("");
-                        edName.setText("");
-                        edPassword.setText("");
-                        edConPass.setText("");
-                    } else {
-                        // Create a User object
-                        User user = new User(username, name, password);
-
-                        udb.open();
-                        udb.insertUser(user);
-                        udb.close();
-                        Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
-                        edUsername.setText("");
-                        edName.setText("");
-                        edPassword.setText("");
-                        edConPass.setText("");
-                        startActivity(new Intent(register.this, MainActivity.class));
-
-                    }
-                }
-            }
-        });
-
     }
 
+    // Method to check if the username exists
+    private void checkUsernameExists(String username, String name, String password) {
+        Api apiService = RetrofitClient.getInstance(getApplicationContext()).getApi();
+        Call<UserResponse> call = apiService.getUserByUsername(username);
 
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().getUser() != null) {
+                    // Username already exists
+                    Toast.makeText(getApplicationContext(), "Username already exists, please choose another one", Toast.LENGTH_SHORT).show();
+                    clearFields();
+                } else {
+                    // Proceed to create the user
+                    createUser(username, password,name);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Error checking username: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Method to create the user
+    private void createUser(String username, String password, String name ){
+        Api apiService = RetrofitClient.getInstance(getApplicationContext()).getApi();
+        Call<DefaultResponse> call = apiService.createUser(username,password,name);
+
+        call.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                if (response.isSuccessful()) {
+                    DefaultResponse responseBody = response.body();
+                    Log.d("Register", "Response: " + responseBody);
+                    if ("success".equals(responseBody.getStatus())) {
+                        // Handle success
+                    } else {
+                        // Log the actual reason for failure
+                        Log.e("Register", "Error: " + responseBody.getMessage());
+                        Toast.makeText(getApplicationContext(), "User creation failed: " + responseBody.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.e("Register", "Error: " + response.code() + " - " + response.message());
+                    Toast.makeText(getApplicationContext(), "Failed to create user", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Error during user creation: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Clear the input fields
+    private void clearFields() {
+        edUsername.setText("");
+        edName.setText("");
+        edPassword.setText("");
+        edConPass.setText("");
+    }
 }
